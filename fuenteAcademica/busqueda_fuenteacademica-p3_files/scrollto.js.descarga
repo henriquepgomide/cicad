@@ -1,0 +1,1 @@
+(function(b){b.fn.scrollTo=function(){return this.each(function(){var a=b(this).offset();window.scrollTo(a.left,a.top)})}})(jQuery);
