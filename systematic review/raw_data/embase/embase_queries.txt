@@ -1,0 +1,90 @@
+﻿Embase
+Session Results
+.......................................................
+No.  Query Results                                          Results  Date       
+#2.  'alcohol'/de OR alcohol AND ('reduction'/de OR           1,992  6 Oct 2016 
+     reduction) OR (brief AND intervention) OR (early 
+     AND intervention) OR (minimal AND intervention) 
+     OR ('alcohol'/de OR alcohol AND ('therapy'/de OR 
+     therapy)) OR (harm AND ('reduction'/de OR 
+     reduction)) OR 'screening'/de OR screening OR 
+     'counseling'/de OR counseling OR 'counselling'/de 
+     OR counselling OR (controlled AND ('drinking'/de 
+     OR drinking)) OR (brief AND ('counseling'/de OR 
+     counseling)) OR (brief AND ('counselling'/de OR 
+     counselling)) OR ('physician'/de OR physician AND 
+     based AND intervention) OR (general AND 
+     ('practitioner'/de OR practitioner) AND 
+     intervention) OR (general AND ('practitioner'/de 
+     OR practitioner) AND advice) OR (brief AND 'nurse 
+     delivered' AND ('counseling'/de OR counseling)) 
+     OR (brief AND 'physician delivered' AND 
+     ('counseling'/de OR counseling)) AND ('substance 
+     related' AND disorders OR (substance AND 
+     ('abuse'/de OR abuse)) OR ('drug'/de OR drug AND 
+     ('abuse'/de OR abuse)) OR ('alcohol'/de OR 
+     alcohol AND consumption) OR 'alcohol'/de OR 
+     alcohol OR 'tobacco'/de OR tobacco OR 
+     'smoking'/de OR smoking OR ('tobacco'/de OR 
+     tobacco AND consumption) OR ('marijuana'/de OR 
+     marijuana AND ('abuse'/de OR abuse)) OR 
+     ('cannabis'/de OR cannabis AND ('abuse'/de OR 
+     abuse)) OR 'marihuana'/de OR marihuana OR 
+     'hashish'/de OR hashish OR ('cocaine'/de OR 
+     cocaine AND related AND disorders) OR 
+     ('cocaine'/de OR cocaine AND ('dependence'/de OR 
+     dependence)) OR ('cocaine'/de OR cocaine AND 
+     ('abuse'/de OR abuse)) OR ('cocaine'/de OR 
+     cocaine AND ('addiction'/de OR addiction)) OR 
+     (crack AND ('cocaine'/de OR cocaine)) OR (street 
+     AND ('drugs'/de OR drugs))) AND (united AND 
+     states OR 'brazil'/de OR brazil OR 'mexico'/de OR 
+     mexico OR 'colombia'/de OR colombia OR 
+     'argentina'/de OR argentina OR 'canada'/de OR 
+     canada OR 'peru'/de OR peru OR 'venezuela'/de OR 
+     venezuela OR 'chile'/de OR chile OR 'ecuador'/de 
+     OR ecuador OR 'guatemala'/de OR guatemala OR 
+     'cuba'/de OR cuba OR 'haiti'/de OR haiti OR 
+     'bolivia'/de OR bolivia OR (dominican AND 
+     republic) OR 'honduras'/de OR honduras OR 
+     'paraguay'/de OR paraguay OR 'nicaragua'/de OR 
+     nicaragua OR (el AND ('salvador'/de OR salvador)) 
+     OR ('costa'/de OR costa AND rica) OR 'panama'/de 
+     OR panama OR (puerto AND rico) OR 'uruguay'/de OR 
+     uruguay OR 'jamaica'/de OR jamaica OR (trinidad 
+     AND tobago) OR 'guyana'/de OR guyana OR 
+     'suriname'/de OR suriname OR 'guadeloupe'/de OR 
+     guadeloupe OR 'martinique'/de OR martinique OR 
+     'bahamas'/de OR bahamas OR 'belize'/de OR belize 
+     OR 'barbados'/de OR barbados OR (french AND 
+     guiana) OR (saint AND lucia) OR 'curacao'/de OR 
+     curacao OR 'aruba'/de OR aruba OR (saint AND 
+     vincent AND grenadines) OR (united AND states AND 
+     virgin AND ('islands'/de OR islands)) OR 
+     'grenada'/de OR grenada OR ('antigua'/de OR 
+     antigua AND barbuda) OR 'dominica'/de OR dominica 
+     OR 'bermuda'/de OR bermuda OR ('cayman'/de OR 
+     cayman AND ('islands'/de OR islands)) OR 
+     'greenland'/de OR greenland OR (saint AND kitts 
+     AND ('nevis'/de OR nevis)) OR (sint AND maarten) 
+     OR ('turks'/de OR turks AND caicos AND 
+     ('islands'/de OR islands)) OR (saint AND martin) 
+     OR (british AND virgin AND ('islands'/de OR 
+     islands)) OR ('caribbean'/de OR caribbean AND 
+     ('netherlands'/de OR netherlands)) OR anguilla OR 
+     (saint AND barthelemy) OR (saint AND pierre AND 
+     miquelon) OR 'montserrat'/de OR montserrat OR 
+     (falkland AND ('islands'/de OR islands))) AND 
+     ([cochrane review]/lim OR [systematic review]/lim 
+     OR [controlled clinical trial]/lim OR [randomized 
+     controlled trial]/lim OR [meta analysis]/lim) AND 
+     ([article]/lim OR [article in press]/lim) AND 
+     ([english]/lim OR [portuguese]/lim OR 
+     [spanish]/lim) AND [2005-2016]/py AND ('alcohol 
+     withdrawal'/de OR 'alcoholism'/de OR 'cannabis 
+     addiction'/de OR 'cocaine dependence'/de OR 
+     'depression'/de OR 'drug dependence'/de OR 
+     'mental disease'/de OR 'opiate addiction'/de OR 
+     'tobacco dependence'/de OR 'withdrawal 
+     syndrome'/de)
+.......................................................

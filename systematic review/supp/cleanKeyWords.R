@@ -1,5 +1,0 @@
-keywords <- readLines("supp/keywords.txt")
-keywords <- gsub("\\[Title/Abstract\\]","" , keywords)
-keywords <- gsub("\\[ptyp\\]","" , keywords)
-keywords <- gsub("\\[sb\\]","" , keywords)
-writeLines(keywords, "psycinfo/keywords.txt")
