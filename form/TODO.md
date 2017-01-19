@@ -45,6 +45,7 @@
 ## Feito
 ==========
 
+* FEITO - No questionário dos centros vamos manter os dados pessoais como "required"? Tenho receio das pessoas que não quiserem se identificar não responderem. - Resposta - Não.
 * FEITO - Os dados pessoais estão como preenchimento obrigatório. Não seria melhor colocar como opcional? Fico com receio das pessoas não responderam pq são obrigadas para passar tel, por exemplo.
 * FEITO - Mudar definição do DUSI: Inventário de triagem do uso de drogas - 
 * FEITO - Durante a capacitação, os alunos treinaram o uso de instrumentos de triagem como (AUDIT, ASSIST, CAGE, DUSI, FAGERSTROM)
