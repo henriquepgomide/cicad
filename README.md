@@ -12,19 +12,14 @@ Some data are protected and may be made available upon request. Reach me at henr
 ## Folder structure
 
 The project has the following structure:
-.
-├── form
-│   ├── cover-letter
-│   ├── email_marketing_results
-│   ├── html-template
-│   ├── logos
-│   ├── report
-│   └── XLSConverter
-├── service_list
-└── systematic review
-    ├── lib
-    ├── raw_data
-    └── supp
+
+<a href="cicad">cicad</a><br>
+├── <a href="cicad/form/">form</a><br>
+│   ├── <a href="cicad/form/cover-letter/">cover-letter</a>	│   ├── <a href="cicad/form/email_marketing_results/">email_marketing_results</a>	│   ├── <a href="cicad/form/html-template/">html-template</a>	│   ├── <a href="cicad/form/logos/">logos</a>	│   ├── <a href="cicad/form/report/">report</a>	│   └── <a href="cicad/form/XLSConverter/">XLSConverter</a>	├── <a href="cicad/service_list/">service_list</a><br>
+└── <a href="cicad/systematic%20review/">systematic review</a><br>
+&nbsp;&nbsp;&nbsp; ├── <a href="cicad/systematic%20review/lib/">lib</a>	&nbsp;&nbsp;&nbsp; ├── <a href="cicad/systematic%20review/raw_data/">raw_data</a>	&nbsp;&nbsp;&nbsp; └── <a href="cicad/systematic%20review/supp/">supp</a>	<br><br>
+</p>
+<p>
 
 **form** has all files related to the form used to gather data from health professionals who have experience on SBIRT  implementation and institutions that provide training on SBIRT. You can find in the folder: the email template available in Spanish and Portuguese, logo of [CICAD](http://www.cicad.oas.org/main/default_eng.asp) and [CREPEIA](http://www.ufjf.br/crepeia/), the report code, written mainly in R, and the [XLSConverter](https://opendatakit.org/use/xlsform/) tool that was used to create the form. All code and tools are freeware or open-source. Have fun!
 
