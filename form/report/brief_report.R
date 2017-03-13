@@ -111,7 +111,7 @@ table0 <- data.frame(Nombre = cicad$center.center_training_questions.center_name
 
 table1 <- subset(table0, table0$N_treinado != 0)
 table1 <- table1[with(table1, order(-N_treinado)), ]
-table1
+write.csv(table1, "../db/summary_table_1.csv", row.names = FALSE)
 
 # ********************
 # MAP ----
