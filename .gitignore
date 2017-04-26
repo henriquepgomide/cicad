@@ -4,4 +4,4 @@
 .Ruserdata
 questionnaire/db/*.csv
 questionnaire/db/toCICAD/*.csv
-questionnaire/db/to_cicad/
+questionnaire/to_cicad/
