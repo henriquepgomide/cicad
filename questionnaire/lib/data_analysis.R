@@ -1,59 +1,38 @@
-# *------------------------------------------------------------------
-# | PROGRAM NAME: Analysis of CICAD questionnaires
-# | CREATED BY: Henrique Gomide
-# *----------------------------------------------------------------
-# | PURPOSE: To create descriptive analysis of all Cicad Questionnaires
-# *------------------------------------------------------------------
-# |*------------------------------------------------------------------
-# | DATA USED:               
-# | CICAD Questionnaires
-# |*------------------------------------------------------------------
-
-# Libraries
-library(formattable)
-library(ggmap)
-library(car)
-
-# Open data
-db <- list.files("../db")[length(list.files("../db"))]
-cicad <- read.csv(paste0("../db/",db), na.strings = "n/a", stringsAsFactors = FALSE); rm(db)
-
-
 # ********************
-# DATA WRANGLING ----
+# RECODE DATA 
 # ********************
 
-# Select time frame
-cicad$start <- strptime(cicad$start, "%Y-%m-%dT%H:%M:%S")
-cicad$end <- strptime(cicad$end, "%Y-%m-%dT%H:%M:%S")
+# Recode Sex
+#cicad$professionals.demographic_questions.d_sex <- Recode(cicad$professionals.demographic_questions.d_sex, 
+#                                                   "'male' = 'Masculino'; 'female' = 'Femenino'")
 
-# Subset with only valid data
-cicad <- subset(cicad, cicad$today > "2017-01-27")
+# Recode Countries
+countries <- "'arge' = 'Argentina';
+'bras' = 'Brasil';
+'boli' = 'Bolivia';
+'chil' = 'Chile';
+'colo' = 'Colombia';
+'cost' = 'Costa Rica';
+'cuba' = 'Cuba';
+'el_s' = 'El Salvador';
+'equa' = 'Ecuador';
+'guat' = 'Guatemala';
+'hait' = 'Haiti';
+'hond' = 'Honduras';
+'mexi' = 'México';
+'nica' = 'Nicaragua';
+'pana' = 'Panama';
+'para' = 'Paraguay';
+'peru' = 'Perú';
+'porto_rico' = 'Puerto Rico';
+'repu' = 'República Dominicana';
+'sain' = 'Santa Lucia';
+'urug' = 'Uruguay';
+'vene' = 'Venezuela';"
 
-# Recode countries
-recodes <- "'arge' = 'Argentina';
-  'bras' = 'Brasil';
-  'boli' = 'Bolivia';
-  'chil' = 'Chile';
-  'colo' = 'Colombia';
-  'cost' = 'Costa Rica';
-  'cuba' = 'Cuba';
-  'el_s' = 'El Salvador';
-  'equa' = 'Ecuador';
-  'guat' = 'Guatemala';
-  'hait' = 'Haiti';
-  'hond' = 'Honduras';
-  'mexi' = 'México';
-  'nica' = 'Nicaragua';
-  'pana' = 'Panama';
-  'para' = 'Paraguay';
-  'peru' = 'Perú';
-  'porto_rico' = 'Puerto Rico';
-  'repu' = 'República Dominicana';
-  'sain' = 'Santa Lucia';
-  'urug' = 'Uruguay';
-  'vene' = 'Venezuela';"
-cicad$center.countries <- Recode(cicad$center.center_training_questions.training_place, recodes)
+cicad$center.countries <- Recode(cicad$center.center_training_questions.training_place, countries)
+cicad$professionals.demographic_questions.d_country <- Recode(cicad$professionals.demographic_questions.d_country, countries)
+rm(countries)
 
 # Transform NA's into zeroes
 cicad[, 151:163] <- sapply(cicad[, 151:163], function(x) as.integer(x))
@@ -71,13 +50,16 @@ cicad$center.training.type <- ifelse(cicad$center.training.type == "NANANA", NA,
 
 # Transform boolean current
 cicad$center.training.isprovided <- Recode(cicad$center.center_training_questions.training_current,  "'no'='No';'yes'='Si'") 
-
 # Set address
 cicad$address <- paste(cicad$center.identification_questions.address, cicad$center.countries)
 
 # ********************
 # DATA ANALYSIS ----
 # ********************
+
+# Load libraries
+library(formattable)
+library(ggmap)
 
 # Center's vs. Professionals vs. None
 table(cicad$intro_question.initial_question)
@@ -96,7 +78,6 @@ countries <- cbind(table(cicad$center.countries))
 
 # Average time to fill in the questionnaire
 summary(cicad$X_duration)/60
-
 
 # ********************
 # TABLE PRESENTATION ----
@@ -120,3 +101,8 @@ write.csv(table1, "../db/summary_table_1.csv", row.names = FALSE)
 geo.info <- geocode(cicad$address)
 map1 <- cbind(table0, geo.info)
 write.csv(map1, "map.csv")
+
+## CENTER DATA #--------
+center <- subset(cicad, cicad$intro_question.initial_question == "center")
+center <- center[, grepl("center.", names(center))]
+center <- center[,colSums(is.na(center))<nrow(center)]

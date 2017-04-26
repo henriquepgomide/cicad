@@ -2,4 +2,6 @@
 .Rhistory
 .RData
 .Ruserdata
-form/db/*.csv
+questionnaire/db/*.csv
+questionnaire/db/toCICAD/*.csv
+questionnaire/db/to_cicad/
