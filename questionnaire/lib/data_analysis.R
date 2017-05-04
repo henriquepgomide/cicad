@@ -2,6 +2,12 @@
 # RECODE DATA 
 # ********************
 
+# Load libraries
+library(car)
+library(formattable)
+library(ggmap)
+library(tm)
+
 # Recode Sex
 #cicad$professionals.demographic_questions.d_sex <- Recode(cicad$professionals.demographic_questions.d_sex, 
 #                                                   "'male' = 'Masculino'; 'female' = 'Femenino'")
@@ -42,24 +48,24 @@ cicad[, 151:163] <- sapply(cicad[, 151:163], function(x) ifelse(is.na(x), 0, x))
 cicad$center.trained.professionals <- rowSums(cicad[, 151:163])
 
 # Transform type of training as string
-cicad$center.training.type.p <- ifelse(cicad$center.center_training_questions.training_type.pres == "True", 'p,','') 
-cicad$center.training.type.d <- ifelse(cicad$center.center_training_questions.training_type.dist == "True", 'd,','') 
-cicad$center.training.type.s <- ifelse(cicad$center.center_training_questions.training_type.semi == "True", 's,','') 
+cicad$center.training.type.p <- ifelse(cicad$center.center_training_questions.training_type.pres == "True", 'presencial,','') 
+cicad$center.training.type.d <- ifelse(cicad$center.center_training_questions.training_type.dist == "True", 'a distancia,','') 
+cicad$center.training.type.s <- ifelse(cicad$center.center_training_questions.training_type.semi == "True", 'semipresencial,','') 
 cicad$center.training.type <- paste0(cicad$center.training.type.p, cicad$center.training.type.d, cicad$center.training.type.s)
 cicad$center.training.type <- ifelse(cicad$center.training.type == "NANANA", NA, cicad$center.training.type)
 
 # Transform boolean current
 cicad$center.training.isprovided <- Recode(cicad$center.center_training_questions.training_current,  "'no'='No';'yes'='Si'") 
+
+# Recode boolean certification
+cicad$center.center_training_questions.full_questionnaire.training_certification <- Recode(cicad$center.center_training_questions.training_current,  "'no'='No';'yes'='Si'")
+
 # Set address
 cicad$address <- paste(cicad$center.identification_questions.address, cicad$center.countries)
 
 # ********************
 # DATA ANALYSIS ----
 # ********************
-
-# Load libraries
-library(formattable)
-library(ggmap)
 
 # Center's vs. Professionals vs. None
 table(cicad$intro_question.initial_question)
@@ -83,16 +89,29 @@ summary(cicad$X_duration)/60
 # TABLE PRESENTATION ----
 # ********************
 
-table0 <- data.frame(Nombre = cicad$center.center_training_questions.center_name,
+table0 <- data.frame(Nombre_centro = cicad$center.center_training_questions.center_name,
+                     Nombre_capacitacion = cicad$center.center_training_questions.training_name_center,
+                     Capacitacion_contenido = cicad$center.center_training_questions.training_content,
+                     Capacitation_horas = cicad$center.center_training_questions.training_length,
+                     Capacitation_certificacion = cicad$center.center_training_questions.full_questionnaire.training_certification,
                      Pais = cicad$center.countries,
                      Atual = cicad$center.training.isprovided,
                      Desde = cicad$center.center_training_questions.training_since,
                      Modalidade = cicad$center.training.type,
-                     N_treinado = cicad$center.trained.professionals)
+                     #N_treinado = cicad$center.trained.professionals,
+                     #Responsable_name = cicad$center.identification_questions.fullname,
+                     Responsable_email = cicad$center.identification_questions.center_email,
+                     Center_telefono = cicad$center.identification_questions.telnumber,
+                     stringsAsFactors = FALSE)
 
-table1 <- subset(table0, table0$N_treinado != 0)
-table1 <- table1[with(table1, order(-N_treinado)), ]
-write.csv(table1, "../db/summary_table_1.csv", row.names = FALSE)
+table0 <- data.frame(lapply(table0, function(v) {
+  if (is.character(v)) return(toupper(v))
+  else return(v)
+}))
+
+table1 <- subset(table0, !is.na(table0$Nombre_centro))
+table1 <- table1[with(table1, order(Nombre_centro)), ]
+write.csv(table1, "../report/summary_table_1.csv", row.names = FALSE)
 
 # ********************
 # MAP ----
