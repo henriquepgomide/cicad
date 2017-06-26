@@ -1,0 +1,199 @@
+---
+title: "Relatório da Encuesta de los centros y profesionales"
+author: "Henrique Pinto Gomide"
+date: "12 Jun 2017"
+output:
+  pdf_document:
+    fig_height: 3
+    fig_width: 5
+    toc: yes
+  html_document:
+    fig_height: 3
+    fig_width: 5
+  word_document:
+    fig_height: 3
+    fig_width: 5
+header-includes: \usepackage[brazilian]{babel}
+---
+
+```{r, setup, include=FALSE}
+# Load packages
+require(mosaic)   
+library(knitr)
+library(ggplot2)
+library(ggthemes)
+library(ggmap)
+library(scales)
+library(car)
+library(dplyr)
+
+# Some customization.  You can alter or delete as desired (if you know what you are doing).
+trellis.par.set(theme=theme.mosaic()) # change default color scheme for lattice
+knitr::opts_chunk$set(
+  tidy=FALSE,     # display code as typed
+  size="small")   # slightly smaller font for code
+
+# Carregar banco de dados da cicad
+cicad <- read.csv("../../db/cicad.csv", stringsAsFactors = FALSE, na.strings = "n/a")
+students <- subset(cicad, cicad$intro_question.initial_question == "student")
+```
+
+# Sumário Executivo
+
+## Resultados principais
+
+
+Profissionais de saúde
+
+1.
+2.
+3.
+4.
+5. 
+
+Centros de formação
+
+1.
+2.
+3.
+4.
+5. 
+
+\newpage
+<p style="page-break-before: always">
+
+# Metodologia
+
+## Instrumento de coleta de dados
+
+Para assegurar a qualidade do instrumento de coleta, seu desenvolvimento foi conduzido em múltiplas etapas. 
+
+Inicialmente, criamos a primeira versão do questionário com base em pesquisas publicadas pelo grupo de pesquisa anteriormente (#citar). As questões foram traduzidas por uma nativa em espanhol e aprovadas pela CICAD. Após terminada a primeira versão, pré-testes foram conduzidos com o público-alvo no Brasil (N = 4) e Colômbia (N = 1). A partir, das avaliações e observações dos pré-testes, desenvolvemos a versão eletrônica do questionário, usando as plataformas [XLSForms](http://xlsform.org) e [Ona](https://ona.io). Todo o código de criação está documentado no repositório da pesquisa no site [Github](https://github.com/henriquepgomide/cicad/). Pré-teste e revisão da versão eletrônica pelo público-alvo e por profissionais da CICAD e OPAS. A versão de coleta do instrumento pode está disponível no link: [https://enketo.ona.io/x/#YBfk](https://enketo.ona.io/x/#YBfk)
+
+## Participantes
+Os dados apresentados aqui foram coletados via Internet. Para maximar a abrangência da coleta, usamos diversas formas de recrutamento. Primeira, solicitamos a profissionais de excelência o compartilhamento do link com o formulário entre suas redes de contato. Segunda, usamos diferentes listas de profissionais de saúde e centros de formação. Ao todo, foram enviados 43840 e-mails, a quantidade de cliques total foi de 1109 (%2). Os resultados das campanhas são apresentados na tabela abaixo.
+
+
+```{r echo = FALSE, results = 'asis'}
+email_marketing <- read.csv("../../../questionnaire/recruitment/email_marketing_results/email_marketing_results.csv", stringsAsFactors = FALSE, dec = ",")
+kable(email_marketing[, c(1,2,5,7,8)], 
+      caption = "Resultados do recrutamento feito através de campanhas de e-mail marketing.", 
+      digits = 2, align = c("l","c", "c","c","c"),
+      col.names = c("Campanha", "N de Destinatários", "Taxa de Abertura", "Cliques", "Taxa de cliques"))
+```
+
+A coleta de dados aconteceu entre `r min(as.Date(cicad$start, format = "%Y-%m-%d"))` e `r max(as.Date(cicad$start, format = "%Y-%m-%d"))`. Ao todo, responderam ao questionário `r dim(cicad)[1]` participantes. Destes, 102 responderam as questões ligadas a caracterização dos centros de pesquisa e 839 como profissionais de saúde que realizaram algum treinamento em intervenções breves. Abaixo segue a relação de respostas dentre aqueles que responderam.
+
+```{r echo = FALSE, results = 'asis'}
+table0 <- cbind(prop.table(sort(table(cicad$intro_question.initial_question), decreasing = TRUE)))*100
+table0 <- cbind(table0,sort(table(cicad$intro_question.initial_question), decreasing = TRUE))
+colnames(table0) <- c("Frequência (%)","N")
+rownames(table0) <- c("Estudantes", "Nenhum", "Centros")
+table0 <- data.frame(table0)
+
+kable(table0,
+      caption = "Frequência de respostas dos questionários por tipo.",
+      digits = 2,
+      col.names = c("%", "N"),
+      align = "cc")
+```
+
+## Análise dos dados
+
+O primeiro passo da etapa de análise de dados foi a inspeção dos registros. Os registros de teste foram removidos, isto é, todos anteriores à 27 de janeiro de 2017, data da primeira divulgação da pesquisa. Após a retirada dos registros, conduzimos estatísticas descritivas usando a linguagem de programação [R](https://www.r-project.org). Com o intuito de oferecer transparência e garantir a replicabilidade da pesquisa, todos os procedimentos de análises foram disponibilizados neste relatório. Os pacotes necessários para replicar se encontram no apêndice deste relatório.
+
+[//]: # (Inserir aqui os dados da sessão do R que produziu este trabalho.)
+
+\newpage
+<p style="page-break-before: always">
+# Resultados
+
+Para facilitar a interpretação e leitura, os dados do relatório foram divididos entre as respostas dos profissionais e os centros respondentes.
+
+## Profissionais
+
+### Sexo
+
+Aproxidamente dois terços da amostra era do sexo feminino (71,6%).
+
+```{r, echo = FALSE, warning = FALSE, out.width= "100%", fig.cap = "Distribuição de respostas por sexo dos participantes"}
+df <- subset(students, !is.na(students$professionals.demographic_questions.d_sex))
+df$professionals.demographic_questions.d_sex <- Recode(df$professionals.demographic_questions.d_sex, "'female'='Feminino';'male'='Masculino'")
+
+ggplot(df, aes(x = factor(professionals.demographic_questions.d_sex), y = (..count..)/sum(..count..))) + 
+  geom_bar(na.rm = TRUE, fill = "#7cb5ec", width = .5) + xlab("Sexo") + ylab("Frequência (%)") + 
+  theme_hc() + scale_colour_hc() + 
+  scale_y_continuous(labels = scales::percent)
+```
+
+### Idade
+```{r echo = FALSE, warning=FALSE}
+students$professionals.demographic_questions.d_age <- as.numeric(students$professionals.demographic_questions.d_age)
+```
+
+
+Os profissionais tinham média de `r round(mean(students$professionals.demographic_questions.d_age, na.rm = TRUE),1)` (DP = `r round(sd(students$professionals.demographic_questions.d_age, na.rm = TRUE),1)`).
+
+```{r, echo = FALSE, warning = FALSE, out.width= "100%", fig.cap = "Idade por sexo dos participantes"}
+ggplot(subset(students, !is.na(students$professionals.demographic_questions.d_age)), aes(professionals.demographic_questions.d_age, fill = professionals.demographic_questions.d_sex)) + 
+  geom_histogram(stat = "count") + 
+  xlab("Idade") + ylab("Frequência") + 
+  theme_hc() + scale_colour_hc() + 
+  scale_fill_manual(name = "Sexo", values = c("#f7a35c", "#7cb5ec"),labels = c("Feminino", "Masculino"))
+```
+
+### Localização
+
+```{r echo = FALSE, out.width= "100%", fig.cap = "Frequência de participação por país"}
+countries_data <- data.frame(table(students$professionals.demographic_questions.d_country))
+# Recode Countries
+countries <- "'arge' = 'Argentina';
+'bras' = 'Brazil';
+'boli' = 'Bolivia';
+'chil' = 'Chile';
+'colo' = 'Colombia';
+'cost' = 'Costa Rica';
+'cuba' = 'Cuba';
+'el_s' = 'El Salvador';
+'equa' = 'Ecuador';
+'guat' = 'Guatemala';
+'hait' = 'Haiti';
+'hond' = 'Honduras';
+'mexi' = 'Mexico';
+'nica' = 'Nicaragua';
+'pana' = 'Panama';
+'para' = 'Paraguay';
+'peru' = 'Peru';
+'porto_rico' = 'Puerto Rico';
+'repu' = 'Dominican Republic';
+'sain' = 'Santa Lucia';
+'urug' = 'Uruguay';
+'vene' = 'Venezuela';"
+
+colnames(countries_data) <- c("country", "freq")
+countries_data$country <- as.character(Recode(countries_data$country, countries))
+
+# Plot map
+map.world <- map_data("world")
+map.world_joined <- left_join(map.world, countries_data, by = c("region" = "country"))
+ggplot() + geom_polygon(data = map.world_joined, aes(x = long, y = lat, group = group, fill = freq)) + 
+  theme_minimal() + xlim(-130, -20) + ylim(-60,40) + xlab("") + ylab("")
+```
+
+
+```{r, echo = FALSE, results = 'asis'}
+kable(countries_data, 
+      caption = "Resultados do recrutamento feito através de campanhas de e-mail marketing.", 
+      digits = 2, align = c("l","c"),
+      col.names = c("País", "Frequência"))
+```
+
+
+### Quem são os profissionais?
+
+- Informações demográficas dos participantes do questionário
+- Sexo, Idade, Ocupação principal, País de trabalho, d_job
+
+## Centros
+
+
