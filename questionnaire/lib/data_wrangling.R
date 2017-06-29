@@ -13,8 +13,9 @@
 library(car)
 
 # Open data
-db <- list.files("../db")[length(list.files("../db"))-1]
-cicad <- read.csv(paste0("../db/",db), na.strings = "n/a", stringsAsFactors = FALSE); rm(db)
+#db <- list.files("../db")[length(list.files("../db"))-1]
+#cicad <- read.csv(paste0("../db/",db), na.strings = "n/a", stringsAsFactors = FALSE); rm(db)
+cicad <- read.csv("questionnaire/db/complete_questionnaire_2017_05_30_17_49_40_064708.csv", na.strings = "n/a", stringsAsFactors = FALSE)
 
 # ********************
 # DATA WRANGLING ----
@@ -67,10 +68,12 @@ table(table(cicad$center.center_training_questions.center_name) > 1)
 # Subset with only valid data
 cicad <- cicad[-c(5, 17, 54, 105, 518, 623, 629, 659), ]
 cicad <- subset(cicad, cicad$today > "2017-01-27" | 
-                  cicad$X_submitted_by != "henriquepgomide")
+                  cicad$X_submitted_by != "henriquepgomide" |
+                  cicad$professionals.demographic_questions.d_main_occupation_other != "Teste Henrique")
 #subset(cicad, cicad$center.center_training_questions.full_questionnaire.training_leader_medi >= 1.111111e+12)[1,1:4]
 
 # STORE DATA AS CSV
-write.csv(subset(cicad, cicad$intro_question.initial_question == "student"), "../db/toCICAD/health_professionals.csv", row.names = FALSE)
-write.csv(subset(cicad, cicad$intro_question.initial_question == "center"), "../db/toCICAD/centers.csv", row.names = FALSE)
+write.csv(cicad, "questionnaire/db/cicad.csv", row.names = FALSE)
+#write.csv(subset(cicad, cicad$intro_question.initial_question == "student"), "../db/toCICAD/health_professionals.csv", row.names = FALSE)
+#write.csv(subset(cicad, cicad$intro_question.initial_question == "center"), "../db/toCICAD/centers.csv", row.names = FALSE)
 

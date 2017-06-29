@@ -125,3 +125,10 @@ write.csv(map1, "map.csv")
 center <- subset(cicad, cicad$intro_question.initial_question == "center")
 center <- center[, grepl("center.", names(center))]
 center <- center[,colSums(is.na(center))<nrow(center)]
+
+## DESCRIPTIVES #--------
+# Checkout all numeric and integer data
+summary(cicad[, sapply(cicad, function(x) is.numeric(x) | is.integer(x))])
+
+# Checkout all character data
+sapply(cicad[, sapply(cicad, is.character)], function(x) table(as.factor(x)))

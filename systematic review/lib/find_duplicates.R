@@ -9,6 +9,7 @@ library(dplyr)
 # Open data
 df <- read.csv("db/all_records.csv", stringsAsFactors = FALSE)
 
+
 # Duplicate title column
 df$title.cleaned <- df$title
 df$title.cleaned <- tolower(df$title.cleaned) ## Convert to lowercase
