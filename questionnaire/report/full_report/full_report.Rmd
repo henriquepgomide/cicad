@@ -1,5 +1,5 @@
 ---
-title: "Relatório da Encuesta de los centros y profesionales"
+title: "Informe da la Encuesta de los centros y profesionales"
 author: "Henrique Gomide"
 date: "Julho, 2017"
 output:
@@ -77,6 +77,7 @@ tb <- cbind(prop.table(sort(table(var), decreasing = TRUE)))*100
 tb <- cbind(sort(table(var), decreasing = TRUE), tb)
 tb <- data.frame(tb)
 tb <- rownames_to_column(tb, "options")
+tb <- arrange(tb, -X2)
 
 print(kable(tb, 
       caption = table_caption, 
@@ -168,7 +169,7 @@ A coleta de dados aconteceu entre `r min(as.Date(cicad$start, format = "%Y-%m-%d
 table0 <- cbind(prop.table(sort(table(cicad$intro_question.initial_question), decreasing = TRUE)))*100
 table0 <- cbind(sort(table(cicad$intro_question.initial_question), decreasing = TRUE), table0)
 colnames(table0) <- c("Frequência (%)","N")
-rownames(table0) <- c("Estudantes", "Nenhum", "Centros")
+rownames(table0) <- c("Profissionais", "Nenhum", "Centros")
 table0 <- data.frame(table0)
 
 kable(table0,
@@ -425,7 +426,7 @@ servicetype <- servicetype %>%
 
 ggplot(servicetype, aes(x = names, y = Valor, fill = factor(Resposta))) + geom_bar(stat = "identity", position = "stack") +
   coord_flip() + theme_hc() + scale_colour_hc() + ylim(0,100) + 
-  scale_fill_manual(name = "Resposta", values = c("#f7a35c", "#7cb5ec"),labels = c("Sí", "No")) + 
+  scale_fill_manual(name = "Resposta", values = c("#f7a35c", "#7cb5ec"),labels = c("No", "Sí")) + 
   labs(  
        x = "",
        y = "Frequência (%)")
@@ -443,7 +444,8 @@ colnames(worksector) <- c("Sí")
 kable(worksector, 
       caption = "¿En qué contexto usted trabaja realizando  detección temprana e intervención breve?", 
       digits = 1, align = c("c"),
-      col.names = c("Sí (%)"))
+      col.names = c("Sí (%)"),
+      row.names = TRUE)
 
 ```
 
@@ -543,12 +545,13 @@ rownames(target_audience) <- c("Usuarios de Atención Primaria en Salud",
                           "Otros"
                           )
 
-colnames(target_audience) <- c("Sí")
+target_audience <- rownames_to_column(target_audience, "options")
+colnames(target_audience) <- c("options", "Sí")
 
-kable(target_audience, 
+kable(arrange(target_audience, -Sí), 
       caption = "¿Para qué tipo de población están orientadas las capacitaciones?", 
-      digits = 1, align = c("c"),
-      col.names = c("Sí (%)"))
+      digits = 1, align = c("l", "c"),
+      col.names = c("", "Sí (%)"))
 ```
 
 
@@ -576,10 +579,11 @@ rownames(screen_tools) <- c("ASSIST – Prueba de Detección de Consumo de Alcoh
                           "Otros"
                           )
 colnames(screen_tools) <- c("Sí")
-kable(screen_tools, 
+screen_tools <- rownames_to_column(screen_tools, "options")
+kable(arrange(screen_tools, - Sí), 
       caption = "¿Cuáles son los instrumentos de detección temprana (despistaje/cribado/tamización) que suele utilizar durante sus intervenciones?", 
-      digits = 1, align = c("c"),
-      col.names = c("Sí (%)"))
+      digits = 1, align = c("l", "c"),
+      col.names = c("", "(%)"))
 ```
 
 
@@ -602,11 +606,11 @@ rownames(substances_table) <- c("Alcohol",
                           )
 
 colnames(substances_table) <- c("Sí")
-
-kable(substances_table, 
+substances_table <- rownames_to_column(substances_table, "options")
+kable(arrange(substances_table, - Sí), 
       caption = "¿Cuáles son las sustancias abordadas?", 
       digits = 1, align = c("c"),
-      col.names = c("Sí (%)"))
+      col.names = c("", "(%)"))
 ```
 
 ```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
@@ -649,10 +653,10 @@ makeTable(followup_freq,
 # ¿Cuál es el protocolo adoptado para casos de bajo riesgo de consumo de alcohol, tabaco y otro tipo de sustancias?
 low_risk <- students$professionals.screening_questions.screening_skip_2.intervention_knowledge.intervention_lowrisk
 low_risk <- Recode(low_risk,
-                           "'referralspecial' = 'Semanal'; 
-                           'referralselfhelp' = 'Mensual';
-                            'quickinterventionno' = 'Semestralmente';
-                            'quickinterventionyes' = 'Anual';
+                           "'referralspecial' = 'Remisión/derivación a servicios especializados'; 
+                           'referralselfhelp' = 'Remisión/derivación a grupo de ayuda–mutua o soporte comunitario';
+                            'quickinterventionno' = 'Realizar intervención educativa y entrega de material informativo (folletos, tarjetas, cartillas)';
+                            'quickinterventionyes' = 'Realizar abordaje educativo SIN material de apoyo (folletos, tarjetas, cartillas)';
                             'none' = 'No adopto ningún procedimiento'")
 makeTable(low_risk, 
           "¿Cuál es el protocolo adoptado para casos de bajo riesgo de consumo de alcohol, tabaco y otro tipo de sustancias?")
@@ -662,10 +666,10 @@ makeTable(low_risk,
 # ¿Cuál es el protocolo seguido para los casos de consumo de riesgo de alcohol, tabaco y otro tipo de sustancias?
 at_risk <- students$professionals.screening_questions.screening_skip_2.intervention_knowledge.intervention_atrisk
 at_risk <- Recode(at_risk,
-                           "'referralspecial' = 'Semanal'; 
-                           'referralselfhelp' = 'Mensual';
-                            'quickinterventionno' = 'Semestralmente';
-                            'quickinterventionyes' = 'Anual';
+                           "'referralspecial' = 'Remisión/derivación a servicios especializados'; 
+                           'referralselfhelp' = 'Remisión/derivación a grupo de ayuda–mutua o soporte comunitario';
+                            'quickinterventionno' = 'Realizar intervención educativa y entrega de material informativo (folletos, tarjetas, cartillas)';
+                            'quickinterventionyes' = 'Realizar abordaje educativo SIN material de apoyo (folletos, tarjetas, cartillas)';
                             'none' = 'No adopto ningún procedimiento'")
 makeTable(at_risk, 
           "¿Cuál es el protocolo seguido para los casos de consumo de riesgo de alcohol, tabaco y otro tipo de sustancias?")
@@ -675,10 +679,10 @@ makeTable(at_risk,
 # ¿Cuál es el protocolo en el caso de usuarios que cumplen los criterios diagnósticos de dependencia de drogas?
 dependence <- students$professionals.screening_questions.screening_skip_2.intervention_knowledge.intervention_dependence
 dependence <- Recode(dependence,
-                           "'referralspecial' = 'Semanal'; 
-                           'referralselfhelp' = 'Mensual';
-                            'quickinterventionno' = 'Semestralmente';
-                            'quickinterventionyes' = 'Anual';
+                           "'referralspecial' = 'Remisión/derivación a servicios especializados'; 
+                           'referralselfhelp' = 'Remisión/derivación a grupo de ayuda–mutua o soporte comunitario';
+                            'quickinterventionno' = 'Realizar intervención educativa y entrega de material informativo (folletos, tarjetas, cartillas)';
+                            'quickinterventionyes' = 'Realizar abordaje educativo SIN material de apoyo (folletos, tarjetas, cartillas)';
                             'none' = 'No adopto ningún procedimiento'")
 makeTable(dependence, 
           "¿Cuál es el protocolo en el caso de usuarios que cumplen los criterios diagnósticos de dependencia de drogas?")
