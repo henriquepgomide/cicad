@@ -1,14 +1,9 @@
 ---
 title: "Relatório da Encuesta de los centros y profesionales"
 author: "Henrique Gomide"
-publisher: "CREPEIA"
-date: "12 Jun 2017"
+date: "Julho, 2017"
 output:
   tufte::tufte_book: default
-  tufte::tufte_html: default
-  word_document:
-    fig_height: 3
-    fig_width: 5
   pdf_document:
     fig_height: 3
     fig_width: 5
@@ -16,10 +11,38 @@ output:
   html_document:
     fig_height: 3
     fig_width: 5
-    toc: yes
-header-includes: \usepackage[brazilian]{babel}
+  tufte::tufte_html: default
+  word_document:
+    fig_height: 3
+    fig_width: 5
+publisher: CREPEIA
+header-includes: \usepackage[brazilian]{babel} \publisher{CREPEIA}
 ---
 
+
+\newpage
+\begin{fullwidth}
+~\vfill
+\thispagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{\baselineskip}
+Copyleft \copyright\ \the\year\ \thanklessauthor
+
+\par\smallcaps{Publicado por \thanklesspublisher}
+
+\par\smallcaps{Relatório da Encuesta de los centros y profesionales}
+
+\par Licensed under the Apache License, Version 2.0 (the ``License''); you may not
+use this file except in compliance with the License. You may obtain a copy
+of the License at \url{http://www.apache.org/licenses/LICENSE-2.0}. Unless
+required by applicable law or agreed to in writing, software distributed
+under the License is distributed on an \smallcaps{``AS IS'' BASIS, WITHOUT
+WARRANTIES OR CONDITIONS OF ANY KIND}, either express or implied. See the
+License for the specific language governing permissions and limitations
+under the License.\index{license}
+
+\par\textit{Primeira impressão, Julho de 2017}
+\end{fullwidth}
 
 \tableofcontents
 
@@ -37,18 +60,36 @@ library(ggmap)
 library(scales)
 library(car)
 library(dplyr)
+library(tidyr)
+library(tibble)
+library(sjPlot)
 
 # Some customization.  You can alter or delete as desired (if you know what you are doing).
 options(OutDec= ",")
-
 trellis.par.set(theme=theme.mosaic()) # change default color scheme for lattice
 knitr::opts_chunk$set(
   tidy=FALSE,     # display code as typed
   size="small")   # slightly smaller font for code
 
+# Set makeTable function 
+makeTable <- function(var, table_caption) {
+tb <- cbind(prop.table(sort(table(var), decreasing = TRUE)))*100
+tb <- cbind(sort(table(var), decreasing = TRUE), tb)
+tb <- data.frame(tb)
+tb <- rownames_to_column(tb, "options")
+
+print(kable(tb, 
+      caption = table_caption, 
+      digits = 1, align = c("l","c","c"),
+      col.names = c("", "N", "%")))
+
+}
+
 # Carregar banco de dados da cicad
+
 cicad <- read.csv("../../db/cicad.csv", stringsAsFactors = FALSE)
 students <- subset(cicad, cicad$intro_question.initial_question == "student")
+centers <- subset(cicad, cicad$intro_question.initial_question == "center")
 ```
 
 \newpage
@@ -74,6 +115,27 @@ students <- subset(cicad, cicad$intro_question.initial_question == "student")
 <!-- 4. -->
 <!-- 5.  -->
 
+# Sumário Executivo
+
+## Resultados principais
+
+
+Profissionais de saúde
+
+1.
+2.
+3.
+4.
+5. 
+
+Centros de formação
+
+1.
+2.
+3.
+4.
+5. 
+
 \newpage
 <p style="page-break-before: always">
 
@@ -83,9 +145,10 @@ students <- subset(cicad, cicad$intro_question.initial_question == "student")
 
 Para assegurar a qualidade do instrumento de coleta, seu desenvolvimento foi conduzido em múltiplas etapas. 
 
-Inicialmente, criamos a primeira versão do questionário com base em pesquisas publicadas pelo grupo de pesquisa anteriormente (#citar). As questões foram traduzidas por uma nativa em espanhol e aprovadas pela CICAD. Após terminada a primeira versão, pré-testes foram conduzidos com o público-alvo no Brasil (N = 4) e Colômbia (N = 1). A partir, das avaliações e observações dos pré-testes, desenvolvemos a versão eletrônica do questionário, usando as plataformas [XLSForms](http://xlsform.org) e [Ona](https://ona.io). Todo o código de criação está documentado no repositório da pesquisa no site [Github](https://github.com/henriquepgomide/cicad/).[^1]. 
+Inicialmente, criamos a primeira versão do questionário com base em pesquisas publicadas pelo grupo de pesquisa anteriormente (#citar). As questões foram traduzidas por uma nativa em espanhol e aprovadas pela CICAD. Após terminada a primeira versão, pré-testes foram conduzidos com o público-alvo no Brasil (N = 4) e Colômbia (N = 1). A partir, das avaliações e observações dos pré-testes, desenvolvemos a versão eletrônica do questionário, usando as plataformas [XLSForms](http://xlsform.org) e [Ona](https://ona.io). Todo o código de programação e materiais suplementares se encontram no repositório da pesquisa [Github](https://github.com/henriquepgomide/cicad/).[^1]. 
 
-[^1]: A versão de coleta do instrumento pode está disponível no link: [https://enketo.ona.io/x/#YBfk](https://enketo.ona.io/x/#YBfk)
+[^1]: A versão de coleta do instrumento está disponível no link: [https://enketo.ona.io/x/#YBfk](https://enketo.ona.io/x/#YBfk)
+
 
 ## Participantes
 Os dados apresentados aqui foram coletados via Internet. Para maximar a abrangência da coleta, usamos diversas formas de recrutamento. Primeira, solicitamos a profissionais de excelência o compartilhamento do link com o formulário entre suas redes de contato. Segunda, usamos diferentes listas de profissionais de saúde e centros de formação. Ao todo, foram enviados 43840 e-mails, a quantidade de cliques total foi de 1109 (%2). Os resultados das campanhas são apresentados na tabela abaixo.
@@ -103,7 +166,7 @@ A coleta de dados aconteceu entre `r min(as.Date(cicad$start, format = "%Y-%m-%d
 
 ```{r echo = FALSE, results = 'asis'}
 table0 <- cbind(prop.table(sort(table(cicad$intro_question.initial_question), decreasing = TRUE)))*100
-table0 <- cbind(table0,sort(table(cicad$intro_question.initial_question), decreasing = TRUE))
+table0 <- cbind(sort(table(cicad$intro_question.initial_question), decreasing = TRUE), table0)
 colnames(table0) <- c("Frequência (%)","N")
 rownames(table0) <- c("Estudantes", "Nenhum", "Centros")
 table0 <- data.frame(table0)
@@ -111,7 +174,7 @@ table0 <- data.frame(table0)
 kable(table0,
       caption = "Frequência de respostas dos questionários por tipo.",
       digits = 1,
-      col.names = c("%", "N"),
+      col.names = c("N", "%"),
       align = "cc")
 ```
 
@@ -135,7 +198,13 @@ Aproxidamente dois terços da amostra era do sexo feminino (71,6%). Os profissio
 df <- subset(students, !is.na(students$professionals.demographic_questions.d_sex))
 df$professionals.demographic_questions.d_sex <- Recode(df$professionals.demographic_questions.d_sex, "'female'='Feminino';'male'='Masculino'")
 df$professionals.demographic_questions.d_age <- as.numeric(df$professionals.demographic_questions.d_age)
+```
 
+Aproxidamente dois terços da amostra era do sexo feminino (71,6%).
+
+```{r, echo = FALSE, warning = FALSE, fig.margin = TRUE,  fig.cap = "Distribuição de respostas por sexo dos participantes"}
+df <- subset(students, !is.na(students$professionals.demographic_questions.d_sex))
+df$professionals.demographic_questions.d_sex <- Recode(df$professionals.demographic_questions.d_sex, "'female'='Feminino';'male'='Masculino'")
 
 ggplot(df, aes(x = factor(professionals.demographic_questions.d_sex), y = (..count..)/sum(..count..))) + 
   geom_bar(na.rm = TRUE, fill = "#7cb5ec", width = .5) + xlab("Sexo") + ylab("Frequência (%)") + 
@@ -143,13 +212,21 @@ ggplot(df, aes(x = factor(professionals.demographic_questions.d_sex), y = (..cou
   scale_y_continuous(labels = scales::percent)
 ```
 
-```{r, echo = FALSE, warning = FALSE, fig.margin = TRUE, fig.cap = "Idade por sexo dos participantes"}
-ggplot(df, aes(professionals.demographic_questions.d_age, fill = professionals.demographic_questions.d_sex)) + 
+
+```{r echo = FALSE, warning=FALSE}
+students$professionals.demographic_questions.d_age <- as.numeric(students$professionals.demographic_questions.d_age)
+```
+
+Os profissionais tinham média de `r round(mean(students$professionals.demographic_questions.d_age, na.rm = TRUE),1)` (DP = `r round(sd(students$professionals.demographic_questions.d_age, na.rm = TRUE),1)`).
+
+```{r, echo = FALSE, fig.margin = TRUE, warning = FALSE, fig.cap = "Idade por sexo dos participantes"}
+ggplot(subset(students, !is.na(students$professionals.demographic_questions.d_age)), aes(professionals.demographic_questions.d_age, fill = professionals.demographic_questions.d_sex)) + 
   geom_histogram(stat = "count") + 
   xlab("Idade") + ylab("Frequência") + 
   theme_hc() + scale_colour_hc() + 
   scale_fill_manual(name = "Sexo", values = c("#f7a35c", "#7cb5ec"),labels = c("Feminino", "Masculino"))
 ```
+
 
 ```{r echo = FALSE, fig.margin = TRUE, fig.cap = "Frequência de participação por país"}
 countries_data <- data.frame(table(students$professionals.demographic_questions.d_country))
@@ -179,6 +256,7 @@ countries <- "'arge' = 'Argentina';
 
 colnames(countries_data) <- c("country", "freq")
 countries_data$country <- as.character(Recode(countries_data$country, countries))
+
 # Plot map
 map.world <- map_data("world")
 map.world_joined <- left_join(map.world, countries_data, by = c("region" = "country"))
@@ -261,5 +339,731 @@ A maior parte dos profissionais definiu a ocupação como faço parte de uma equ
 
 ### Treinamento
 
-Este é um teste sobre a parte de treinamento. Breve descrição das questões aqui.
+A maioria dos profissionais recebeu curso de formação, sendo avaliada certificada. Entre os respondentes, 83,3% disseram ter participado de algum curso de formação específico para a atuação na área de álcool, tabaco e outras substâncias.
+
+```{r, echo = FALSE, warning = FALSE, fig.margin = TRUE,  fig.cap = "¿Formación específica?"}
+# ¿Realizó algún curso de formación específica para la actuación en el área de alcohol, tabaco y otras sustancias? 
+df <- subset(students, !is.na(students$professionals.training_questions.t_training_boolean))
+students$professionals.training_questions.t_training_boolean <- Recode(students$professionals.training_questions.t_training_boolean,
+                                                                       "'yes' = 'Sí'; 'no' = 'No'")
+ggplot(df, aes(x = factor(professionals.training_questions.t_training_boolean), y = (..count..)/sum(..count..))) + 
+  geom_bar(na.rm = TRUE, fill = "#7cb5ec", width = .5) + xlab("") + ylab("Frequência (%)") + 
+  theme_hc() + scale_colour_hc() + 
+  scale_y_continuous(labels = scales::percent)
+```
+
+Entre aqueles que disseram ter participado, 90,7% disseram ter realizado uma avaliação durante o curso e 88,1% recebeu alguma certificação.
+
+```{r, echo = FALSE, warning = FALSE, fig.margin = TRUE,  fig.cap = "¿Evaluado en el curso?"}
+# ¿Usted fue evaluado en el curso?
+df <- subset(students, !is.na(students$professionals.training_questions.training_skip.training_assessment))
+students$professionals.training_questions.training_skip.training_assessment <- Recode(students$professionals.training_questions.training_skip.training_assessment,
+                                                                       "'yes' = 'Sí'; 'no' = 'No'")
+ggplot(df, aes(x = factor(professionals.training_questions.training_skip.training_assessment), y = (..count..)/sum(..count..))) + 
+  geom_bar(na.rm = TRUE, fill = "#7cb5ec", width = .5) + xlab("") + ylab("Frequência (%)") + 
+  theme_hc() + scale_colour_hc() + 
+  scale_y_continuous(labels = scales::percent)
+```
+
+```{r, echo = FALSE, warning = FALSE, fig.margin = TRUE,  fig.cap = "¿Recibió certificado?"}
+# ¿Recibió certificado por su participación en el curso?
+df <- subset(students, !is.na(students$professionals.training_questions.training_skip.training_certification))
+students$professionals.training_questions.training_skip.training_certification <- Recode(students$professionals.training_questions.training_skip.training_certification,
+                                                                       "'yes' = 'Sí'; 'no' = 'No'")
+ggplot(df, aes(x = factor(professionals.training_questions.training_skip.training_certification), y = (..count..)/sum(..count..))) + 
+  geom_bar(na.rm = TRUE, fill = "#7cb5ec", width = .5) + xlab("") + ylab("Frequência (%)") + 
+  theme_hc() + scale_colour_hc() + 
+  scale_y_continuous(labels = scales::percent)
+```
+
+```{r, echo = FALSE, include = FALSE}
+# ¿Cuál fue la capacitación que usted realizó? Otros
+data.frame(cbind(t(sapply(students[,24:29], function(x) prop.table(table(x))*100, simplify = TRUE))))
+```
+
+O curso de capacitação mais realizado pelos profissionais foi ASSIST-DIT (31,5%), seguido do SUPERA (16,3%). A categoria outros foi muito mais frequente, indicando que as categorias não foram adequadas. Dentre a categoria outros, diversos cursos foram citados como:
+
+* AUDIT-DIT,
+* Capacitação para Comunidades Terapêuticas, 
+* Especialidad en promoción de la Salud y Prevención del Comportamiento Adictivo (UNAM), 
+* Prevenção ao uso indevido de drogas para conselheiros (UFSC), 
+* Procedimientos Cognitivos Conductuales a través de la acción comunitaria para la prevención del comportamiento adictivo y de la supervisión de los profesionales.
+
+O número de horas de capacitação foi bastante heterogêneo entre os profissionais. O valor mediano de horas da carga horária das capacitações foi de 50 (DIQ = 142,5). Nove entre dez profissionais disseram que sentem que a capacitação realizada os ajudaram a realizar rastreio e intervenção breve.
+
+```{r, echo = FALSE, fig.margin = TRUE, warning = FALSE, fig.cap = "Carga horária relatada"}
+ggplot(subset(students, !is.na(students$professionals.training_questions.training_skip.training_length)), aes(y = professionals.training_questions.training_skip.training_length, x = "")) + 
+  geom_boxplot() + coord_flip() + 
+  xlab("") + ylab("") + 
+  theme_hc() + scale_colour_hc()
+```
+
+
+### Atuação profissional
+
+Aproximadamente três entre quatro profissionais disseram realizar intervenções breves no dia-a-dia do trabalho. A experiência mediana com intervenções breves foi de 7 anos (DIQ = 5).
+
+```{r, echo = FALSE, fig.margin = TRUE, warning = FALSE, fig.cap = "Ano de início de trabalho com IB's"}
+since_year <- as.numeric(students$professionals.training_questions.work_skip.work_sinceyear)
+since_year <- subset(since_year, since_year > 1900 & since_year <= 2017)
+ggplot() + aes(since_year, y = (..count..)/sum(..count..)) + geom_histogram(binwidth=1, fill = "#7cb5ec") + 
+  theme_hc() + scale_colour_hc() +
+  labs(x = "Ano", y = "Frequência (%)") +
+  scale_y_continuous(labels = scales::percent)
+```
+
+A maior parte dos profissionais trabalha no setor público (90,9%) quando comparados com o setor privado (11,1%) e Organizações não governamentais (8,1%). A soma destas categorias é maior que 100% uma vez que um mesmo profissional pode trabalhar em mais de um setor.
+
+```{r, echo = FALSE, warning = FALSE, fig.margin = FALSE,  fig.cap = "Tipo de serviço", fig.width=10, fig.height=5}
+servicetype <- data.frame(mapply(c, students[, 36:38], students[, 110:112]))
+servicetype <- data.frame(cbind(t(sapply(servicetype, function(x) prop.table(table(x))*100, simplify = TRUE))))
+rownames(servicetype) <- c("Público","Privado", "ONG's")
+colnames(servicetype) <- c("No", "Sí")
+servicetype$names <-rownames(servicetype)
+servicetype <- servicetype %>%
+                  gather(Resposta, Valor, No:Sí)
+
+ggplot(servicetype, aes(x = names, y = Valor, fill = factor(Resposta))) + geom_bar(stat = "identity", position = "stack") +
+  coord_flip() + theme_hc() + scale_colour_hc() + ylim(0,100) + 
+  scale_fill_manual(name = "Resposta", values = c("#f7a35c", "#7cb5ec"),labels = c("Sí", "No")) + 
+  labs(  
+       x = "",
+       y = "Frequência (%)")
+
+```
+
+Sobre o setor do serviço, a maior parte dos profissionais disse trabalhar na saúde (79,8%). Depois, educação (24,6%), serviço social (10,7%), outros (6,5%) e justiça (2,1%).
+
+```{r, , echo = FALSE, results = 'asis'}
+worksector <- data.frame(mapply(c, students[,39:43], students[, 113:117]))
+worksector <- data.frame(cbind(t(sapply(worksector, function(x) prop.table(table(x))*100, simplify = TRUE))[,2]))
+rownames(worksector) <- c("Serviço Social","Saúde", "Educação", "Justiça", "Outro")
+colnames(worksector) <- c("Sí")
+
+kable(worksector, 
+      caption = "¿En qué contexto usted trabaja realizando  detección temprana e intervención breve?", 
+      digits = 1, align = c("c"),
+      col.names = c("Sí (%)"))
+
+```
+
+
+# Tabelas 
+
+## Profissionais
+
+```{r, echo = FALSE, results = 'asis'}
+# ¿Realizó algún curso de formación específica para la actuación en el área de alcohol, tabaco y otras sustancias?
+training_table <- cbind(prop.table(sort(table(students$professionals.training_questions.t_training_boolean), decreasing = TRUE)))*100
+training_table <- cbind(sort(table(students$professionals.training_questions.t_training_boolean), decreasing = TRUE), training_table)
+training_table <- data.frame(training_table)
+training_table <- rownames_to_column(training_table, "options")
+
+kable(training_table, 
+      caption = "Frequência de profissionais que receberam intervenções breves", 
+      digits = 1, align = c("l","c","c"),
+      col.names = c("", "N", "%"))
+```
+
+```{r, echo = FALSE, results = 'asis'}
+# ¿Usted fue evaluado en el curso?
+students$professionals.training_questions.training_skip.training_assessment <- Recode(students$professionals.training_questions.training_skip.training_assessment,
+                                                                       "'yes' = 'Sí'; 'no' = 'No'")
+training_table <- cbind(prop.table(sort(table(students$professionals.training_questions.training_skip.training_assessment), decreasing = TRUE)))*100
+training_table <- cbind(sort(table(students$professionals.training_questions.training_skip.training_assessment), decreasing = TRUE), training_table)
+training_table <- data.frame(training_table)
+training_table <- rownames_to_column(training_table, "options")
+
+kable(training_table, 
+      caption = "Frequência de profissionais que foram avaliados no curso", 
+      digits = 1, align = c("l","c","c"),
+      col.names = c("", "N", "%"))
+```
+
+```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
+# ¿Recibió certificado por su participación en el curso?
+students$professionals.training_questions.training_skip.training_certification <- Recode(students$professionals.training_questions.training_skip.training_certification,
+                                                                       "'yes' = 'Sí'; 'no' = 'No'")
+training_table <- cbind(prop.table(sort(table(students$professionals.training_questions.training_skip.training_certification), decreasing = TRUE)))*100
+training_table <- cbind(sort(table(students$professionals.training_questions.training_skip.training_certification), decreasing = TRUE), training_table)
+training_table <- data.frame(training_table)
+training_table <- rownames_to_column(training_table, "options")
+
+kable(training_table, 
+      caption = "Frequência de profissionais que receberam certificação", 
+      digits = 1, align = c("l","c","c"),
+      col.names = c("", "N", "%"))
+```
+
+```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
+# ¿Siente que la capacitación le ayudó en su trabajo para hacer detección temprana e intervención breve?
+students$professionals.training_questions.training_skip.training_bi_useful <- Recode(students$professionals.training_questions.training_skip.training_bi_useful,
+                                                                       "'yes' = 'Sí'; 'no' = 'No'")
+training_table <- cbind(prop.table(sort(table(students$professionals.training_questions.training_skip.training_bi_useful), decreasing = TRUE)))*100
+training_table <- cbind(sort(table(students$professionals.training_questions.training_skip.training_bi_useful), decreasing = TRUE), training_table)
+training_table <- data.frame(training_table)
+training_table <- rownames_to_column(training_table, "options")
+
+kable(training_table, 
+      caption = "¿Siente que la capacitación le ayudó en su trabajo para hacer detección temprana e intervención breve?", 
+      digits = 1, align = c("l","c","c"),
+      col.names = c("", "N", "%"))
+```
+
+```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
+# ¿Realiza usted detección temprana e intervención breve en su día a día en el trabajo? 
+students$professionals.training_questions.t_work_bi_screening <- Recode(students$professionals.training_questions.t_work_bi_screening,
+                                                                       "'yes' = 'Sí'; 'no' = 'No'")
+training_table <- cbind(prop.table(sort(table(students$professionals.training_questions.t_work_bi_screening), decreasing = TRUE)))*100
+training_table <- cbind(sort(table(students$professionals.training_questions.t_work_bi_screening), decreasing = TRUE), training_table)
+training_table <- data.frame(training_table)
+training_table <- rownames_to_column(training_table, "options")
+
+kable(training_table, 
+      caption = "¿Realiza usted detección temprana e intervención breve en su día a día en el trabajo? ", 
+      digits = 1, align = c("l","c","c"),
+      col.names = c("", "N", "%"))
+```
+
+
+```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
+# Sector salud
+worktype <- data.frame(c(students$professionals.training_questions.work_skip.sector_health.work_type_health, students$professionals.screening_questions.screening_skip_3.sector_health_no.work_type_health_no))
+worktype <- Recode(worktype[,1],
+                   "'amb' = 'Ambulatorio/consulta externa'; 
+                    'hospitals' = 'Hospitales';
+                    'mentalhealth' = 'Centro Comunitario de Tratamento de salud mental/adicciones';
+                    'primarycare' = 'Atención Primaria en Salud';
+                    'other' = 'Otros'
+                   ")
+makeTable(worktype, "Sector salud")
+```
+
+
+```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
+# Sector educativo
+educationtype <- data.frame(c(students$professionals.training_questions.work_skip.sector_education.work_type_education, students$professionals.screening_questions.screening_skip_3.sector_education_no.work_type_education_no))
+
+educationtype <- Recode(educationtype[,1],
+                       "'prim' = 'Educación Primaria'; 
+                        'sec' = 'Educación Secundaria';
+                        'sup' = 'Educación Superior/ Universitaria';
+                        'other' = 'Otros'
+                       ")
+makeTable(educationtype, "Sector educativo")
+```
+
+
+```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
+# ¿Para qué tipo de población están orientadas las capacitaciones?
+target_audience <- data.frame(cbind(t(sapply(students[,50:57], function(x) prop.table(table(x))*100, simplify = TRUE))[,2]))
+rownames(target_audience) <- c("Usuarios de Atención Primaria en Salud",
+                          "Usuarios de otros servicios especializados (excepto alcohol y otras drogas )",
+                          "Usuarios de servicios comunitarios",
+                          "Usuarios en contextos laborales",
+                          "Población carcelaria",
+                          "Población en situación de calle",
+                          "Escuela",
+                          "Otros"
+                          )
+
+colnames(target_audience) <- c("Sí")
+
+kable(target_audience, 
+      caption = "¿Para qué tipo de población están orientadas las capacitaciones?", 
+      digits = 1, align = c("c"),
+      col.names = c("Sí (%)"))
+```
+
+
+```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
+# Cuando indaga por el consumo de drogas ¿utiliza algún cuestionario para la detección temprana (AUDIT, ASSIST, CAGE, DUSI, FAGERSTROM)?
+screening_question <- students$professionals.screening_questions.screening_question
+screening_question <- Recode(screening_question,
+                             "'yes' = 'Sí'; 
+                             'no' = 'No';
+                             'nobut' = 'No, pregunto sin utilizar un cuestionario específico'
+                             ")
+makeTable(screening_question, 
+          "Cuando indaga por el consumo de drogas ¿utiliza algún cuestionario para la detección temprana (AUDIT, ASSIST, CAGE, DUSI, FAGERSTROM)?")
+```
+
+```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
+# ¿Cuáles son los instrumentos de detección temprana (despistaje/cribado/tamización) que suele utilizar durante sus intervenciones?
+screen_tools <- students[, 60:65]
+screen_tools <- data.frame(cbind(t(sapply(screen_tools, function(x) prop.table(table(x))*100, simplify = TRUE))[,2]))
+rownames(screen_tools) <- c("ASSIST – Prueba de Detección de Consumo de Alcohol, Tabaco y Sustancias",
+                          "AUDIT – Test de Identificación de Trastornos debido al Consumo de Alcohol",
+                          "CAGE – Cuestionario detección de problemas relacionados con el consumo de alcohol",
+                          "DUSI – Inventario de Despistaje de Uso de Drogas",
+                          "FAGERSTROM – Test de Fagerström de dependencia de la nicotina",
+                          "Otros"
+                          )
+colnames(screen_tools) <- c("Sí")
+kable(screen_tools, 
+      caption = "¿Cuáles son los instrumentos de detección temprana (despistaje/cribado/tamización) que suele utilizar durante sus intervenciones?", 
+      digits = 1, align = c("c"),
+      col.names = c("Sí (%)"))
+```
+
+
+```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
+# ¿Cuáles son las sustancias abordadas?
+substances <- students[, 67:78]
+substances_table <- data.frame(cbind(t(sapply(substances, function(x) prop.table(table(x))*100, simplify = TRUE))[,2]))
+rownames(substances_table) <- c("Alcohol",
+                          "Tabaco",
+                          "Cocaína inhalada",
+                          "Cocaína fumable",
+                          "Marihuana",
+                          "Anfetaminas",
+                          "Alucinógenos",
+                          "Inhalantes",
+                          "Hipnóticos/sedantes",
+                          "Drogas inyectables",
+                          "Opiáceos",
+                          "Otros"
+                          )
+
+colnames(substances_table) <- c("Sí")
+
+kable(substances_table, 
+      caption = "¿Cuáles son las sustancias abordadas?", 
+      digits = 1, align = c("c"),
+      col.names = c("Sí (%)"))
+```
+
+```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
+# ¿Utiliza cartillas/ folletos/tarjetas/ como parte del material informativo y de apoyo  durante la intervención breve?
+screeningbooklets <- students$professionals.screening_questions.screening_skip_2.screening_booklets
+screeningbooklets <- Recode(screeningbooklets,
+                           "'yes' = 'Sí'; 
+                           'no' = 'No';
+                           'other' = 'Utiliza otros recursos'
+                           ")
+makeTable(screeningbooklets, 
+          "¿Utiliza cartillas/ folletos/tarjetas/ como parte del material informativo y de apoyo  durante la intervención breve?")
+```
+
+```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
+# ¿Realiza algún tipo de seguimiento o acompañamiento a los usuarios que participaron de la  intervención breve?
+followup <- students$professionals.screening_questions.screening_skip_2.screening_followup
+followup <- Recode(followup,
+                           "'yes' = 'Sí'; 
+                           'no' = 'No';
+                           ")
+makeTable(followup, 
+          "¿Realiza algún tipo de seguimiento o acompañamiento a los usuarios que participaron de la  intervención breve?")
+```
+
+```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
+# ¿Con qué frecuencia se realiza el acompañamiento ?
+followup_freq <- students$professionals.screening_questions.screening_skip_2.screening_followup_frequency
+followup_freq <- Recode(followup_freq,
+                           "'weekly' = 'Semanal'; 
+                           'monthly' = 'Mensual';
+                            'semiannually' = 'Semestralmente';
+                            'annually' = 'Anual'")
+makeTable(followup_freq, 
+          "¿Con qué frecuencia se realiza el acompañamiento?")
+```
+
+
+```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
+# ¿Cuál es el protocolo adoptado para casos de bajo riesgo de consumo de alcohol, tabaco y otro tipo de sustancias?
+low_risk <- students$professionals.screening_questions.screening_skip_2.intervention_knowledge.intervention_lowrisk
+low_risk <- Recode(low_risk,
+                           "'referralspecial' = 'Semanal'; 
+                           'referralselfhelp' = 'Mensual';
+                            'quickinterventionno' = 'Semestralmente';
+                            'quickinterventionyes' = 'Anual';
+                            'none' = 'No adopto ningún procedimiento'")
+makeTable(low_risk, 
+          "¿Cuál es el protocolo adoptado para casos de bajo riesgo de consumo de alcohol, tabaco y otro tipo de sustancias?")
+```
+
+```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
+# ¿Cuál es el protocolo seguido para los casos de consumo de riesgo de alcohol, tabaco y otro tipo de sustancias?
+at_risk <- students$professionals.screening_questions.screening_skip_2.intervention_knowledge.intervention_atrisk
+at_risk <- Recode(at_risk,
+                           "'referralspecial' = 'Semanal'; 
+                           'referralselfhelp' = 'Mensual';
+                            'quickinterventionno' = 'Semestralmente';
+                            'quickinterventionyes' = 'Anual';
+                            'none' = 'No adopto ningún procedimiento'")
+makeTable(at_risk, 
+          "¿Cuál es el protocolo seguido para los casos de consumo de riesgo de alcohol, tabaco y otro tipo de sustancias?")
+```
+
+```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
+# ¿Cuál es el protocolo en el caso de usuarios que cumplen los criterios diagnósticos de dependencia de drogas?
+dependence <- students$professionals.screening_questions.screening_skip_2.intervention_knowledge.intervention_dependence
+dependence <- Recode(dependence,
+                           "'referralspecial' = 'Semanal'; 
+                           'referralselfhelp' = 'Mensual';
+                            'quickinterventionno' = 'Semestralmente';
+                            'quickinterventionyes' = 'Anual';
+                            'none' = 'No adopto ningún procedimiento'")
+makeTable(dependence, 
+          "¿Cuál es el protocolo en el caso de usuarios que cumplen los criterios diagnósticos de dependencia de drogas?")
+```
+
+```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
+# Escoja la opción que mejor representa la práctica de detección temprana e intervención breve en su institución de trabajo
+screening_work <- students$professionals.screening_questions.screening_skip.screening_work
+screening_work <- Recode(screening_work,
+                   "'onlyone' = 'Soy el único profesional de mi equipo que realiza detección temprana e IB'; 
+                   'afew' = 'Pocos profesionales de mi equipo realizan detección temprana e IB';
+                    'more' = 'Muchos profesionales de mi equipo realizan detección temprana e IB';
+                    'almost' = 'Casi todos los profesionales de mi equipo realizan detección temprana e IB';
+                    'donot' = 'No actúo con equipos de trabajo.'")
+makeTable(screening_work, 
+          "Escoja la opción que mejor representa la práctica de detección temprana e intervención breve en su institución de trabajo")
+```
+
+```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
+# ¿Considera que la detección temprana e intervención breve contribuyen para reducir el consumo y daños asociados al abuso de sustancias psicoactivas de la población que usted atiende?
+bi_effec <- students$professionals.screening_questions.screening_skip.bi_perception.bi_effectiveness
+bi_effec <- Recode(bi_effec,
+                           "'yes' = 'Sí'; 
+                           'no' = 'No';
+                           ")
+makeTable(bi_effec, 
+          "¿Considera que la detección temprana e intervención breve contribuyen para reducir el consumo y daños asociados al abuso de sustancias psicoactivas de la población que usted atiende?")
+```
+
+```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
+# ¿Evalúa los resultados de la detección temprana e intervención breve en su práctica cotidiana de trabajo?
+bi_eva <- students$professionals.screening_questions.screening_skip.bi_perception.bi_evaluation
+bi_eva <- Recode(bi_eva,
+                       "'yes' = 'Sí'; 
+                       'no' = 'No';
+                       ")
+makeTable(bi_eva, 
+          "¿Evalúa los resultados de la  detección temprana e intervención breve en su práctica cotidiana de trabajo?")
+```
+
+```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
+# ¿Cuáles de las siguientes opciones facilitan la implementación de detección temprana e intervención breve en la práctica profesional?
+roadblocks1 <- students[, 93:96]
+roadblocks1 <- data.frame(cbind(t(sapply(roadblocks1, function(x) prop.table(table(x))*100, simplify = TRUE))[,2]))
+rownames(roadblocks1) <- c("Apoyo por parte de las autoridades, gestores, gerentes o responsables del servicio",
+                          "Inclusión del procedimiento en las pautas y normas obligatorias",
+                          "Programa de actualización para el equipo de atención ",
+                          "Otros"
+                          )
+
+colnames(roadblocks1) <- c("Sí")
+
+kable(roadblocks1, 
+      caption = "¿Cuáles de las siguientes opciones facilitan la implementación de detección temprana e intervención breve en la práctica profesional?", 
+      digits = 1, align = c("c"),
+      col.names = c("Sí (%)"))
+```
+
+
+```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
+# ¿Cuáles de las siguintes opciones dificultan la implementación de las actividades de detección temprana e intervención breve?
+roadblocks2 <- students[, 98:105]
+roadblocks2 <- data.frame(cbind(t(sapply(roadblocks2, function(x) prop.table(table(x))*100, simplify = TRUE))[,2]))
+rownames(roadblocks2) <- c("Falta de apoyo por parte de las autoridades, gestores, gerentes o responsables",
+                          "Falta de tiempo (sobrecarga de actividades)",
+                          "Falta de entrenamiento",
+                          "Falta de supervisión",
+                          "Falta de apoyo por parte de otros miembros del equipo",
+                          "Falta de una red de servicios para remitir/derivar los casos",
+                          "Falta de conocimientos sobre el consumo de alcohol y drogas en la población",
+                          "Otros"
+                          )
+
+colnames(roadblocks2) <- c("Sí")
+
+kable(roadblocks2, 
+      caption = "¿Cuáles de las siguintes opciones dificultan la implementación de las actividades de detección temprana e intervención breve?", 
+      digits = 1, align = c("c"),
+      col.names = c("Sí (%)"))
+```
+
+```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
+# ¿Identifica  alguna práctica exitosa en la implementación de detección temprana e intervención breve?
+successful <- students$professionals.screening_questions.screening_skip.roadblocks_questions.successful_experience
+successful <- Recode(successful,
+                           "'yes' = 'Sí'; 
+                           'no' = 'No';
+                           ")
+makeTable(successful, 
+          "¿Identifica alguna práctica exitosa en la implementación de detección temprana e intervención breve?")
+```
+
+
+## Centros
+
+
+```{r echo = FALSE, fig.margin = FALSE, fig.cap = "Frequência de participação por país"}
+countries_data <- data.frame(table(centers$center.center_training_questions.training_place))
+# Recode Countries
+countries <- "'arge' = 'Argentina';
+'bras' = 'Brazil';
+'boli' = 'Bolivia';
+'chil' = 'Chile';
+'colo' = 'Colombia';
+'cost' = 'Costa Rica';
+'cuba' = 'Cuba';
+'el_s' = 'El Salvador';
+'equa' = 'Ecuador';
+'guat' = 'Guatemala';
+'hait' = 'Haiti';
+'hond' = 'Honduras';
+'mexi' = 'Mexico';
+'nica' = 'Nicaragua';
+'pana' = 'Panama';
+'para' = 'Paraguay';
+'peru' = 'Peru';
+'porto_rico' = 'Puerto Rico';
+'repu' = 'Dominican Republic';
+'sain' = 'Santa Lucia';
+'urug' = 'Uruguay';
+'vene' = 'Venezuela';"
+
+colnames(countries_data) <- c("country", "freq")
+countries_data$country <- as.character(Recode(countries_data$country, countries))
+
+# Plot map
+map.world <- map_data("world")
+map.world_joined <- left_join(map.world, countries_data, by = c("region" = "country"))
+ggplot() + geom_polygon(data = map.world_joined, aes(x = long, y = lat, group = group, fill = cut(freq, 5))) + 
+  xlim(-130, -20) + ylim(-60,40) + 
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + 
+  coord_equal() + theme_map(base_size = 4) + scale_fill_brewer(name = "Frequência", type = "seq", palette = 5, na.value = "#E5E5E5")
+```
+
+```{r, echo = FALSE, results = 'asis'}
+countries_table <- filter(countries_data, country != "other")
+countries_table <- mutate(countries_table, freq.per = freq / sum(freq)*100)
+
+kable(arrange(countries_table, - freq), 
+      caption = "Distribuição dos centros por país", 
+      digits = 1, align = c("l","c","c"),
+      col.names = c("País", "N", "%"))
+```
+
+
+```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
+# ¿La capacitación es ofrecida actualmente?
+current <- centers$center.center_training_questions.training_current
+current <- Recode(successful,
+                           "'yes' = 'Sí'; 
+                           'no' = 'No';
+                           ")
+makeTable(current, 
+          "¿La capacitación es ofrecida actualmente?")
+```
+
+
+```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
+# ¿Cuál es la modalidad de la capacitación?
+traintype <- centers[, 131:133]
+traintype <- data.frame(cbind(t(sapply(traintype, function(x) prop.table(table(x))*100, simplify = TRUE))[,2]))
+rownames(traintype) <- c("Presencial",
+                          "Semipresencial",
+                          "A distancia"
+                          )
+
+colnames(traintype) <- c("Sí")
+
+kable(traintype, 
+      caption = "¿Cuál es la modalidad de la capacitación?", 
+      digits = 1, align = c("c"),
+      col.names = c("Sí (%)"))
+```
+
+```{r, echo = FALSE, fig.margin = FALSE, warning = FALSE, fig.cap = "Carga horária dos treinamentos"}
+ggplot(subset(centers, !is.na(centers$centers$center.center_training_questions.training_length)), aes(y = centers$center.center_training_questions.training_length, x = "")) + 
+  geom_boxplot() + coord_flip() + 
+  xlab("") + ylab("") + 
+  theme_hc() + scale_colour_hc()
+```
+
+```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
+# ¿Algún módulo fue destinado para el tema de detección temprana e intervención breve?
+training_bi <- centers$center.center_training_questions.training_bi
+training_bi <- Recode(training_bi,
+                           "'yes' = 'Sí'; 
+                           'no' = 'No';
+                           ")
+makeTable(training_bi, 
+          "¿Algún módulo fue destinado para el tema de detección temprana e intervención breve?")
+```
+
+```{r, echo = FALSE, results = 'asis'}
+training_public <- centers[, 138:150]
+training_public <- data.frame(cbind(t(sapply(training_public, function(x) prop.table(table(x))*100, simplify = TRUE))[,2]))
+rownames(training_public) <- c('Agente/líder/educador (a) comunitario (a) en salud',
+                               'Trabajo social',
+                              'Enfermería',
+                              'Fisioterapia',
+                              'Medicina',
+                              'Nutrición',
+                              'Derecho',
+                              'Policía',
+                              'Docencia',
+                              'Auxiliar/ técnico de enfermería',
+                              'Psicología',
+                              'Estudiante',
+                              'Otro')
+
+colnames(training_public) <- c("Sí")
+
+kable(training_public, 
+      caption = "Categorías profesionales capacitadas", 
+      digits = 1, align = c("c"),
+      col.names = c("%"))
+```
+
+
+```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
+# ¿A qué tipo de servicio pertenece el centro de capacitación?
+training_sector <- centers$center.center_training_questions.full_questionnaire.training_sector
+training_sector <- Recode(training_sector,
+                           "'public' = 'Público'; 
+                           'private' = 'Privado';
+                            'ngos' = 'Organizaciones no gubernamentales (ONG)';
+                           ")
+makeTable(training_sector, 
+          "¿A qué tipo de servicio pertenece el centro de capacitación?")
+```
+
+```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
+# ¿Durante la capacitación los estudiantes entrenaron el uso de instrumentos como (AUDIT, ASSIST, CAGE, DUSI, FAGERSTROM)?
+screentool_bol <- centers$center.center_training_questions.full_questionnaire.training_screening_tool_boolean
+screentool_bol <- Recode(screentool_bol,
+                           "'yes' = 'Sí'; 
+                           'no' = 'No';
+                           ")
+makeTable(screentool_bol, 
+          "¿Durante la capacitación los estudiantes entrenaron el uso de instrumentos como (AUDIT, ASSIST, CAGE, DUSI, FAGERSTROM)?")
+```
+
+```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
+# ¿Cuáles son los instrumentos de detección temprana (despistaje/cribado/tamización) que suele utilizar durante sus intervenciones?
+screen_tools <- centers[, 175:180]
+screen_tools <- data.frame(cbind(t(sapply(screen_tools, function(x) prop.table(table(x))*100, simplify = TRUE))[,2]))
+rownames(screen_tools) <- c("ASSIST – Prueba de Detección de Consumo de Alcohol, Tabaco y Sustancias",
+                          "AUDIT – Test de Identificación de Trastornos debido al Consumo de Alcohol",
+                          "CAGE – Cuestionario detección de problemas relacionados con el consumo de alcohol",
+                          "DUSI – Inventario de Despistaje de Uso de Drogas",
+                          "FAGERSTROM – Test de Fagerström de dependencia de la nicotina",
+                          "Otros"
+                          )
+colnames(screen_tools) <- c("Sí")
+kable(screen_tools, 
+      caption = "¿Cuáles son los instrumentos de detección temprana (despistaje/cribado/tamización) que suele utilizar durante sus intervenciones?", 
+      digits = 1, align = c("c"),
+      col.names = c("Sí (%)"))
+```
+
+
+```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
+# ¿Qué tipo de recursos son utilizados?
+teaching_sources <- centers[, 181:185]
+teaching_sources <- data.frame(cbind(t(sapply(teaching_sources, function(x) prop.table(table(x))*100, simplify = TRUE))[,2]))
+rownames(teaching_sources) <- c("Libros o folletos informativos",
+                          "Videos",
+                          "Audios",
+                          "Cartillas",
+                          "Otros"
+                          )
+colnames(teaching_sources) <- c("Sí")
+kable(teaching_sources, 
+      caption = "¿Qué tipo de recursos son utilizados?", 
+      digits = 1, align = c("c"),
+      col.names = c("Sí (%)"))
+```
+
+```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
+# ¿Fue otorgado un certificado oficialmente válido?
+training_certificate <- centers$center.center_training_questions.full_questionnaire.training_certification
+training_certificate <- Recode(training_certificate,
+                           "'yes' = 'Sí'; 
+                           'no' = 'No';
+                           ")
+makeTable(training_certificate, 
+          "¿Fue otorgado un certificado oficialmente válido?")
+```
+
+```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
+# ¿El Centro de Formación cuenta con permisos especiales o respaldos oficiales de autoridades educativas (Ministerio/Secretaría de Educación)?
+official_certificate <- centers$center.center_training_questions.full_questionnaire.training_official_support
+official_certificate <- Recode(official_certificate,
+                           "'yes' = 'Sí'; 
+                           'no' = 'No';
+                           ")
+makeTable(official_certificate, 
+          "¿El Centro de Formación cuenta con permisos especiales o respaldos oficiales de autoridades educativas (Ministerio/Secretaría de Educación)?")
+```
+
+```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
+# ¿El Centro de Formación ofrece cursos de actualización continuada?
+training_update <- centers$center.center_training_questions.full_questionnaire.training_followup
+training_update <- Recode(training_update,
+                           "'yes' = 'Sí'; 
+                           'no' = 'No';
+                           ")
+makeTable(training_update, 
+          "¿El Centro de Formación ofrece cursos de actualización continuada?")
+```
+
+
+```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
+# ¿Existe alguna forma de acompañamiento o seguimiento para las personas que han sido capacitadas?
+training_followup <- centers$center.center_training_questions.full_questionnaire.training_followup_type
+training_followup <- Recode(training_followup,
+                           "'yes' = 'Sí'; 
+                           'no' = 'No';
+                           ")
+makeTable(training_followup, 
+          "¿Existe alguna forma de acompañamiento o seguimiento para las personas que han sido capacitadas?")
+```
+
+
+```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
+# ¿Durante la capacitación es realizada alguna práctica como complemento al contenido teórico presentado?
+training_practice <- centers$center.center_training_questions.full_questionnaire.training_practice
+training_practice <- Recode(training_practice,
+                           "'yes' = 'Sí'; 
+                           'no' = 'No';
+                           ")
+makeTable(training_practice, 
+          "¿Durante la capacitación es realizada alguna práctica como complemento al contenido teórico presentado?")
+```
+
+
+```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
+# ¿La evaluación realizada a las personas capacitadas propone situaciones prácticas que permitan verificar lo aprendido?
+training_assessment <- centers$center.center_training_questions.full_questionnaire.training_practice_assessment
+training_assessment <- Recode(training_assessment,
+                           "'yes' = 'Sí'; 
+                           'no' = 'No';
+                           ")
+makeTable(training_assessment, 
+          "¿La evaluación realizada a las personas capacitadas propone situaciones prácticas que permitan verificar lo aprendido?")
+```
+
+
+```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
+# ¿Cómo se difunde la oferta académica del Centro de Formación?
+training_marketing <- centers[, 188:192]
+training_marketing <- data.frame(cbind(t(sapply(training_marketing, function(x) prop.table(table(x))*100, simplify = TRUE))[,2]))
+rownames(training_marketing) <- c("Redes sociales",
+                          "Página web del Centro de Formación",
+                          "Lista de correos electrónicos",
+                          "Referencia de autoridades locales, nacionales o internacionales",
+                          "Otros"
+                          )
+colnames(training_marketing) <- c("Sí")
+kable(training_marketing, 
+      caption = "¿Cómo se difunde la oferta académica del Centro de Formación?", 
+      digits = 1, align = c("c"),
+      col.names = c("Sí (%)"))
+```
 

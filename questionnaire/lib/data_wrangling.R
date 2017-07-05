@@ -17,6 +17,7 @@ library(car)
 #cicad <- read.csv(paste0("../db/",db), na.strings = "n/a", stringsAsFactors = FALSE); rm(db)
 cicad <- read.csv("questionnaire/db/complete_questionnaire_2017_05_30_17_49_40_064708.csv", na.strings = "n/a", stringsAsFactors = FALSE)
 
+
 # ********************
 # DATA WRANGLING ----
 # ********************
@@ -34,6 +35,7 @@ sapply(cicad[, sapply(cicad, is.character)], function(x) table(as.factor(x)))
 # Age
 # Convert wrong age input into NA
 # n73 made a mistake on reporting age. After removal, data is okay.
+cicad$professionals.demographic_questions.d_age <- as.numeric(cicad$professionals.demographic_questions.d_age)
 cicad$professionals.demographic_questions.d_age <- ifelse(cicad$professionals.demographic_questions.d_age > 100, NA, 
                                                           cicad$professionals.demographic_questions.d_age)
 
@@ -76,4 +78,3 @@ cicad <- subset(cicad, cicad$today > "2017-01-27" |
 write.csv(cicad, "questionnaire/db/cicad.csv", row.names = FALSE)
 #write.csv(subset(cicad, cicad$intro_question.initial_question == "student"), "../db/toCICAD/health_professionals.csv", row.names = FALSE)
 #write.csv(subset(cicad, cicad$intro_question.initial_question == "center"), "../db/toCICAD/centers.csv", row.names = FALSE)
-
