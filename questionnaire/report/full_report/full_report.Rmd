@@ -447,6 +447,10 @@ kable(worksector,
 
 ```
 
+## Centros
+Os dados apresentados nesta seção são agregados. Caso o leitor tenha interesse em conhecer as características dos centros individuais, recomendamos a leitura do outro produto desta consultoria "Censo de Los Programas de Detección Temprana e Intervención Breve, Desarrolados en la Región de las Américas a partir del 2005."[^2]
+
+[^2]: O censo está disponível neste [link](#Inserir link)
 
 # Tabelas 
 
@@ -454,75 +458,47 @@ kable(worksector,
 
 ```{r, echo = FALSE, results = 'asis'}
 # ¿Realizó algún curso de formación específica para la actuación en el área de alcohol, tabaco y otras sustancias?
-training_table <- cbind(prop.table(sort(table(students$professionals.training_questions.t_training_boolean), decreasing = TRUE)))*100
-training_table <- cbind(sort(table(students$professionals.training_questions.t_training_boolean), decreasing = TRUE), training_table)
-training_table <- data.frame(training_table)
-training_table <- rownames_to_column(training_table, "options")
-
-kable(training_table, 
-      caption = "Frequência de profissionais que receberam intervenções breves", 
-      digits = 1, align = c("l","c","c"),
-      col.names = c("", "N", "%"))
+training_bol <- students$professionals.training_questions.t_training_boolean
+training_bol <- Recode(training_bol,
+                      "'yes' = 'Sí'; 'no' = 'No'")
+makeTable(training_bol,
+          "Frequência de profissionais que receberam intervenções breves")
 ```
 
 ```{r, echo = FALSE, results = 'asis'}
 # ¿Usted fue evaluado en el curso?
-students$professionals.training_questions.training_skip.training_assessment <- Recode(students$professionals.training_questions.training_skip.training_assessment,
-                                                                       "'yes' = 'Sí'; 'no' = 'No'")
-training_table <- cbind(prop.table(sort(table(students$professionals.training_questions.training_skip.training_assessment), decreasing = TRUE)))*100
-training_table <- cbind(sort(table(students$professionals.training_questions.training_skip.training_assessment), decreasing = TRUE), training_table)
-training_table <- data.frame(training_table)
-training_table <- rownames_to_column(training_table, "options")
-
-kable(training_table, 
-      caption = "Frequência de profissionais que foram avaliados no curso", 
-      digits = 1, align = c("l","c","c"),
-      col.names = c("", "N", "%"))
+training_table <- students$professionals.training_questions.training_skip.training_assessment
+training_table <- Recode(training_table,
+                        "'yes' = 'Sí'; 'no' = 'No'")
+makeTable(training_table,
+          "¿Usted fue evaluado en el curso?")
 ```
 
 ```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
 # ¿Recibió certificado por su participación en el curso?
-students$professionals.training_questions.training_skip.training_certification <- Recode(students$professionals.training_questions.training_skip.training_certification,
-                                                                       "'yes' = 'Sí'; 'no' = 'No'")
-training_table <- cbind(prop.table(sort(table(students$professionals.training_questions.training_skip.training_certification), decreasing = TRUE)))*100
-training_table <- cbind(sort(table(students$professionals.training_questions.training_skip.training_certification), decreasing = TRUE), training_table)
-training_table <- data.frame(training_table)
-training_table <- rownames_to_column(training_table, "options")
-
-kable(training_table, 
-      caption = "Frequência de profissionais que receberam certificação", 
-      digits = 1, align = c("l","c","c"),
-      col.names = c("", "N", "%"))
+certificado_tb <- students$professionals.training_questions.training_skip.training_certification
+certificado_tb <- Recode(certificado_tb,
+                        "'yes' = 'Sí'; 'no' = 'No'")
+makeTable(certificado_tb, 
+          "Frequência de profissionais que receberam certificação")
 ```
 
 ```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
 # ¿Siente que la capacitación le ayudó en su trabajo para hacer detección temprana e intervención breve?
-students$professionals.training_questions.training_skip.training_bi_useful <- Recode(students$professionals.training_questions.training_skip.training_bi_useful,
-                                                                       "'yes' = 'Sí'; 'no' = 'No'")
-training_table <- cbind(prop.table(sort(table(students$professionals.training_questions.training_skip.training_bi_useful), decreasing = TRUE)))*100
-training_table <- cbind(sort(table(students$professionals.training_questions.training_skip.training_bi_useful), decreasing = TRUE), training_table)
-training_table <- data.frame(training_table)
-training_table <- rownames_to_column(training_table, "options")
-
-kable(training_table, 
-      caption = "¿Siente que la capacitación le ayudó en su trabajo para hacer detección temprana e intervención breve?", 
-      digits = 1, align = c("l","c","c"),
-      col.names = c("", "N", "%"))
+ib_tb <- students$professionals.training_questions.training_skip.training_bi_useful 
+ib_tb <- Recode(ib_tb,
+          "'yes' = 'Sí'; 'no' = 'No'")
+makeTable(ib_tb, 
+          "¿Siente que la capacitación le ayudó en su trabajo para hacer detección temprana e intervención breve?")
 ```
 
 ```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
 # ¿Realiza usted detección temprana e intervención breve en su día a día en el trabajo? 
-students$professionals.training_questions.t_work_bi_screening <- Recode(students$professionals.training_questions.t_work_bi_screening,
-                                                                       "'yes' = 'Sí'; 'no' = 'No'")
-training_table <- cbind(prop.table(sort(table(students$professionals.training_questions.t_work_bi_screening), decreasing = TRUE)))*100
-training_table <- cbind(sort(table(students$professionals.training_questions.t_work_bi_screening), decreasing = TRUE), training_table)
-training_table <- data.frame(training_table)
-training_table <- rownames_to_column(training_table, "options")
-
-kable(training_table, 
-      caption = "¿Realiza usted detección temprana e intervención breve en su día a día en el trabajo? ", 
-      digits = 1, align = c("l","c","c"),
-      col.names = c("", "N", "%"))
+workib_tb <- students$professionals.training_questions.t_work_bi_screening
+workib_tb <- Recode(workib_tb,
+                    "'yes' = 'Sí'; 'no' = 'No'")
+makeTable(workib_tb, 
+          "¿Realiza usted detección temprana e intervención breve en su día a día en el trabajo?")
 ```
 
 
