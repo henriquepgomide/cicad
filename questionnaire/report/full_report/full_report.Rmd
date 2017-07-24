@@ -1,20 +1,14 @@
 ---
-title: "Informe da la Encuesta de los centros y profesionales"
-author: "Henrique Gomide"
+title: "Relatório sobre questionário dos centros e profissionais"
+author: "CREPEIA"
 date: "Julho, 2017"
 output:
+  tufte::tufte_html: default
   tufte::tufte_book: default
-  pdf_document:
-    fig_height: 3
-    fig_width: 5
-    toc: yes
   html_document:
     fig_height: 3
     fig_width: 5
-  tufte::tufte_html: default
-  word_document:
-    fig_height: 3
-    fig_width: 5
+  word_document: default
 publisher: CREPEIA
 header-includes: \usepackage[brazilian]{babel} \publisher{CREPEIA}
 ---
@@ -26,20 +20,16 @@ header-includes: \usepackage[brazilian]{babel} \publisher{CREPEIA}
 \thispagestyle{empty}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{\baselineskip}
-Copyleft \copyright\ \the\year\ \thanklessauthor
+Copyright \copyright\ \the\year\ \thanklessauthor
 
 \par\smallcaps{Publicado por \thanklesspublisher}
 
-\par\smallcaps{Relatório da Encuesta de los centros y profesionales}
+\par\smallcaps{Relatório sobre questionário dos centros e profissionais}
 
-\par Licensed under the Apache License, Version 2.0 (the ``License''); you may not
-use this file except in compliance with the License. You may obtain a copy
-of the License at \url{http://www.apache.org/licenses/LICENSE-2.0}. Unless
-required by applicable law or agreed to in writing, software distributed
-under the License is distributed on an \smallcaps{``AS IS'' BASIS, WITHOUT
-WARRANTIES OR CONDITIONS OF ANY KIND}, either express or implied. See the
-License for the specific language governing permissions and limitations
-under the License.\index{license}
+\par Material produzido como parte de projeto de consultoria realizada
+para a Comisión Interamericana para el Control del Abuso de Drogas - 
+Organização dos Estados Americanos (OEA). Todos os direitos reservados.
+\index{license}
 
 \par\textit{Primeira impressão, Julho de 2017}
 \end{fullwidth}
@@ -87,7 +77,6 @@ print(kable(tb,
 }
 
 # Carregar banco de dados da cicad
-
 cicad <- read.csv("../../db/cicad.csv", stringsAsFactors = FALSE)
 students <- subset(cicad, cicad$intro_question.initial_question == "student")
 centers <- subset(cicad, cicad$intro_question.initial_question == "center")
@@ -95,47 +84,68 @@ centers <- subset(cicad, cicad$intro_question.initial_question == "center")
 
 \newpage
 
-<!-- # Sumário Executivo -->
+# Considerações gerais sobre o informe
 
-<!-- ## Resultados principais -->
+Baseado nos dados do presente relatório e de informações coletadas em outras fases do projeto geral, tais como revisão sistemática, consultas de material bibliográfico, identificação de boas práticas, entrevistas e visitas a alguns centros, apresentamos alguns pontos fortes e fracos em relação às capacitações e ações sobre triagem e intervenção breve na região da América Latina. Por fim, terminamos com algumas recomendações gerais
 
+## Pontos fortes
 
-<!-- Profissionais de saúde -->
+* Existem experiências de implementação de triagem bastante avançadas em caráter nacional e de forma sistemática em nossa região, em especial no México, Chile e Argentina que podem servir como base para os demais países.
 
-<!-- 1. -->
-<!-- 2. -->
-<!-- 3. -->
-<!-- 4. -->
-<!-- 5.  -->
+* Há uma grande disponibilidade de material didático de boa qualidade, produzido pelos centros em idiomas espanhol e português e adaptados às realidades da região. Além disso, há uma aprovação e satisfação geral dos profissionais em relação ao material produzido.
 
-<!-- Centros de formação -->
+* As capacitações disponíveis apresentam boa aceitação pelos profissionais, que avaliam que as mesmas podem contribuir para a implementação de ações de triagem e intervenção breve, tanto as presenciais quanto as não presenciais.
+* Os profissionais capacitados acreditam nas ações de triagem e intervenções breves como ações efetivas para redução do consumo de álcool, tabaco e outras drogas.
+* As ações de triagem e intervenções breves implementadas parecem ser coerentes e contextualizadas à realidade e necessidades dos países latino-americanos.
+* Em geral, as capacitações apresentam um caráter prático e aplicado e utilizam de diversos recursos didáticos e pedagógicos, o que facilita a tradução do conhecimento adquirido para a realidade dos profissionais e serviços.
+* O setor de atenção primária é o maior foco das capacitações e implementações realizadas.
+* As evidências, apesar de ainda incipientes, em geral apontam para resultados positivos tanto em termos de efetividade quanto de implementação.
 
-<!-- 1. -->
-<!-- 2. -->
-<!-- 3. -->
-<!-- 4. -->
-<!-- 5.  -->
+## Pontos fracos
+
+* Há uma concentração de profissionais capacitados, centros e implementação em poucos países.
+
+* As evidências sobre triagem e intervenção breve ainda se concentram na Brasil e México.
+
+* As evidências sobre triagem e intervenção breve ainda são incipientes quanto à sua efetividade em nossa região.
+* Há a necessidade de ampliação de formação, implementação e avaliação de triagem e intervenções breves para outras populações e contextos, para além da atenção primária à saúde.
+* Observou-se uma grande variação conceitual sobre que é intervenção breve, gerando uma percepção de “caixa preta”, o que dificulta a avaliação da efetividade da mesma.
+* De uma forma geral, as ações de intervenção breve não foram incorporadas nos sistemas de saúde ou como estratégia oficial dos países.
+
+## Recomendações
+
+* Maior divulgação e articulação interinstitucional para a capacitação de profissionais e gestores, em especial em países onde existe poucas experiências de implementação, com foco na educação distância já disponíveis, pois apresentam qualidade, são contextualizados, teriam menor custo pois já estão disponíveis e tem potencial de grande abrangência regional.
+
+* Parcerias bi ou multilaterais de capacitação e implementação de ações de triagem e intervenção breve entre países da América Latina, em especial entre países com maior experiência e os que ainda estão em fase inicial. 
+
+* Alinhamento teórico/conceitual da intervenção breve, baseado na literatura da área e das necessidades dos países.
+* Trabalho de sensibilização junto às autoridades nacionais e regionais para a importância da incorporação e implementação de ações de intervenção breve nos sistemas de saúde ou outros setores.
+* Maior ênfase nas avaliações e seguimentos dos profissionais após realizarem a capacitação (ênfase na implementação e aplicação dos conhecimentos adquiridos), em especial nos cursos à distância.
+* Promover mais pesquisas para a produção de mais evidências sobre a efetividade da intervenção breve em diferentes contextos e populações, com ênfase principalmente na efetividade e na avaliação da implementação (processo).  
 
 # Sumário Executivo
 
 ## Resultados principais
 
+### Centros de formação
 
-Profissionais de saúde
+1. México (48%) e Brasil (30,4%) foram os países com maior frequência de centros de formação;
 
-1.
-2.
-3.
-4.
-5. 
+2. As capacitações presenciais são as mais frequentes (91,2%);
+3. Psicólogos (72,4%) e Assistentes Sociais (71,1%) foram as categorias profissionais mais capacitadas; 
+4. O instrumentos de triagem mais apresentados nas capacitações foram o AUDIT (85,7%) e ASSIST (75%).
 
-Centros de formação
+### Profissionais de saúde
 
-1.
-2.
-3.
-4.
-5. 
+1. 90,7% dos profissionais passaram por algum tipo de avaliação de conteúdo para finalizar o treinamento;
+
+2. O setor de saúde foi o mais frequente (76,8%) em relação ao setor de trabalho dos profissionais  dos profissionais capacitados,  principalmente da atenção primária à saúde (60,3%);
+3. Principal população alvo das intervenções realizadas pelos profissionais são usuários de serviços de atenção primária à saúde;
+4. A maioria (92,7%) acredita que a capacitação ajudou na prática e acredita que a triagem e intervenção breve contribui para a redução do consumo de álcool e outras drogas (92,5%);
+5. A maioria dos profissionais (82%) utiliza instrumentos de triagem para a avaliação do consumo de álcool e outras drogas, sendo o ASSIST (89,9%) o mais utilizado;
+6. Álcool (98,1%), Tabaco (91,9%) e Maconha (89%) são as substâncias abordadas com maior frequência pelos profissionais;
+7.  Fatores principais atribuídos como facilitadores para a implementação de ações de triagem e intervenção breve: capacitação permanente das equipes (67,7%) e apoio de autoridades, gestores e gerentes (44,4%);
+8. Fatores principais atribuídos como obstáculos para a implementação de ações de triagem e intervenção breve: falta de tempo (sobrecarga de trabalho) (49,9%), falta de apoio de autoridades, gestores e gerentes (48,9%) e falta de rede disponível para tratamento (41,7%).
 
 \newpage
 <p style="page-break-before: always">
@@ -152,7 +162,9 @@ Inicialmente, criamos a primeira versão do questionário com base em pesquisas 
 
 
 ## Participantes
-Os dados apresentados aqui foram coletados via Internet. Para maximar a abrangência da coleta, usamos diversas formas de recrutamento. Primeira, solicitamos a profissionais de excelência o compartilhamento do link com o formulário entre suas redes de contato. Segunda, usamos diferentes listas de profissionais de saúde e centros de formação. Ao todo, foram enviados 43840 e-mails, a quantidade de cliques total foi de 1109 (%2). Os resultados das campanhas são apresentados na tabela abaixo.
+Para a excução do estudo, optou-se por realizar a estratégia de recrutamento e coleta de dados eletrônicos, em função da abrangência territorial previsto para a coleta de dados. Para tanto, foram seguidos todos os passos metodológicos previstos na literatura científica para pesquisas via internet.  Para maximizar a abrangência da coleta, usamos diversas formas de recrutamento. Primeiramente, entramos em contato com especialistas de referência na área de vários países para divulgar o link com o formulário entre suas redes de contato. Em segundo momento, usamos diferentes listas de profissionais de saúde e centros de formação fornecidos por diversos centros de capacitação e instituições de referência tais como CICAD, UNODC, COPOLAD, INEBRIA Latina, OPS, SUPERA, dentre outros. Através de tal estratégia de divulgação e recrutamento conseguimos um vasto número de e-mails de centros e profissionais em toda a região. Por último, considerando o amplo número de profissionais capacitados pelos centros que responderam ao formulário, conforme apresentado a seguir, demonstram uma ampla cobertura de informações sobre as capacitações na região. 
+
+Foram monitorados todas as fases de envio, cliques e taxas de respostas. Ao todo, foram enviados 43.840 e-mails,  com a quantidade de cliques total de 1109 (2% do total de e-mails enviados). Os resultados das campanhas são apresentados na tabela abaixo.
 
 
 ```{r echo = FALSE, results = 'asis'}
@@ -181,603 +193,20 @@ kable(table0,
 
 ## Análise dos dados
 
-O primeiro passo da etapa de análise de dados foi a inspeção dos registros. Os registros de teste foram removidos, isto é, todos anteriores à 27 de janeiro de 2017, data da primeira divulgação da pesquisa. Após a retirada dos registros, conduzimos estatísticas descritivas usando a linguagem de programação [R](https://www.r-project.org). Com o intuito de oferecer transparência e garantir a replicabilidade da pesquisa, todos os procedimentos de análises foram disponibilizados neste relatório. Os pacotes necessários para replicar se encontram no apêndice deste relatório.
+O primeiro passo da etapa de análise de dados foi a inspeção dos registros. Os registros de teste foram removidos, isto é, todos anteriores à 27 de janeiro de 2017, data da primeira divulgação da pesquisa. Após a retirada dos registros, conduzimos estatísticas descritivas usando a linguagem de programação R. Com o intuito de oferecer transparência e garantir a replicabilidade da pesquisa, todos os procedimentos de análises foram disponibilizados neste relatório. Os pacotes necessários para replicar se encontram no apêndice deste relatório.
 
 [//]: # (Inserir aqui os dados da sessão do R que produziu este trabalho.)
 
-# Resultados
+## Resultados
 
-Para facilitar a interpretação e leitura, os dados do relatório foram divididos entre as respostas dos profissionais e os centros respondentes.
+A coleta de dados foi organizado em nosso formulário eletrônico em dois níveis. O primeiro se refere às informações gerais de organização, caracterização e avaliação dos centros de capacitação. Os respondentes desse questionário foram coordenadores dos centros ou de programas de capacitação ou alguém da equipe designado pelos coordenadores. Um segundo nível de nossa pesquisa foi voltada para profissionais que foram capacitados no tema. Para facilitar a interpretação e leitura, os dados do relatório foram divididos entre as respostas dos centros e dos profissionais.
 
-## Profissionais
-
-### Características Sócio-demográficas
-
-Aproxidamente dois terços da amostra era do sexo feminino (71,6%). Os profissionais tinham média de `r round(mean(students$professionals.demographic_questions.d_age, na.rm = TRUE),1)` (DP = `r round(sd(students$professionals.demographic_questions.d_age, na.rm = TRUE),1)`). A idade entre homens foi mais dispersa quando comparada à das mulheres como indicado na figura. Tivemos a participação de profissionais de 19 países como visto no mapa e na tabela. 
-
-```{r, echo = FALSE, warning = FALSE, fig.margin = TRUE,  fig.cap = "Distribuição de respostas por sexo dos participantes"}
-df <- subset(students, !is.na(students$professionals.demographic_questions.d_sex))
-df$professionals.demographic_questions.d_sex <- Recode(df$professionals.demographic_questions.d_sex, "'female'='Feminino';'male'='Masculino'")
-df$professionals.demographic_questions.d_age <- as.numeric(df$professionals.demographic_questions.d_age)
-```
-
-Aproxidamente dois terços da amostra era do sexo feminino (71,6%).
-
-```{r, echo = FALSE, warning = FALSE, fig.margin = TRUE,  fig.cap = "Distribuição de respostas por sexo dos participantes"}
-df <- subset(students, !is.na(students$professionals.demographic_questions.d_sex))
-df$professionals.demographic_questions.d_sex <- Recode(df$professionals.demographic_questions.d_sex, "'female'='Feminino';'male'='Masculino'")
-
-ggplot(df, aes(x = factor(professionals.demographic_questions.d_sex), y = (..count..)/sum(..count..))) + 
-  geom_bar(na.rm = TRUE, fill = "#7cb5ec", width = .5) + xlab("Sexo") + ylab("Frequência (%)") + 
-  theme_hc() + scale_colour_hc() + 
-  scale_y_continuous(labels = scales::percent)
-```
-
-
-```{r echo = FALSE, warning=FALSE}
-students$professionals.demographic_questions.d_age <- as.numeric(students$professionals.demographic_questions.d_age)
-```
-
-Os profissionais tinham média de `r round(mean(students$professionals.demographic_questions.d_age, na.rm = TRUE),1)` (DP = `r round(sd(students$professionals.demographic_questions.d_age, na.rm = TRUE),1)`).
-
-```{r, echo = FALSE, fig.margin = TRUE, warning = FALSE, fig.cap = "Idade por sexo dos participantes"}
-ggplot(subset(students, !is.na(students$professionals.demographic_questions.d_age)), aes(professionals.demographic_questions.d_age, fill = professionals.demographic_questions.d_sex)) + 
-  geom_histogram(stat = "count") + 
-  xlab("Idade") + ylab("Frequência") + 
-  theme_hc() + scale_colour_hc() + 
-  scale_fill_manual(name = "Sexo", values = c("#f7a35c", "#7cb5ec"),labels = c("Feminino", "Masculino"))
-```
-
-
-```{r echo = FALSE, fig.margin = TRUE, fig.cap = "Frequência de participação por país"}
-countries_data <- data.frame(table(students$professionals.demographic_questions.d_country))
-# Recode Countries
-countries <- "'arge' = 'Argentina';
-'bras' = 'Brazil';
-'boli' = 'Bolivia';
-'chil' = 'Chile';
-'colo' = 'Colombia';
-'cost' = 'Costa Rica';
-'cuba' = 'Cuba';
-'el_s' = 'El Salvador';
-'equa' = 'Ecuador';
-'guat' = 'Guatemala';
-'hait' = 'Haiti';
-'hond' = 'Honduras';
-'mexi' = 'Mexico';
-'nica' = 'Nicaragua';
-'pana' = 'Panama';
-'para' = 'Paraguay';
-'peru' = 'Peru';
-'porto_rico' = 'Puerto Rico';
-'repu' = 'Dominican Republic';
-'sain' = 'Santa Lucia';
-'urug' = 'Uruguay';
-'vene' = 'Venezuela';"
-
-colnames(countries_data) <- c("country", "freq")
-countries_data$country <- as.character(Recode(countries_data$country, countries))
-
-# Plot map
-map.world <- map_data("world")
-map.world_joined <- left_join(map.world, countries_data, by = c("region" = "country"))
-ggplot() + geom_polygon(data = map.world_joined, aes(x = long, y = lat, group = group, fill = cut(freq, 5))) + 
-  xlim(-130, -20) + ylim(-60,40) + 
-  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + 
-  coord_equal() + theme_map(base_size = 4) + scale_fill_brewer(name = "Frequência", type = "seq", palette = 1, na.value = "#E5E5E5")
-```
-
-```{r, echo = FALSE, results = 'asis'}
-countries_table <- filter(countries_data, country != "other")
-countries_table <- mutate(countries_table, freq.per = freq / sum(freq)*100)
-
-kable(arrange(countries_table, - freq), 
-      caption = "Distribuição dos respondentes por país", 
-      digits = 1, align = c("l","c","c"),
-      col.names = c("País", "N", "%"))
-```
-
-Embora a participação dos profissionais tenha se concentrado nestes países, conseguimos coletar as informações de 20 países distintos. Os três países com o maior número de respostas foram México (57,7%), Brasil (23,0%) e Chile (7,3%).
-
-```{r, echo = FALSE, results = 'asis'}
-tb_main_ocupation <- filter(students,
-                            !is.na(professionals.demographic_questions.d_main_occupation))
-tb_main_ocupation <- data.frame(table(students$professionals.demographic_questions.d_main_occupation))
-
-ocupations <- "
-'agen' = 'Agente/líder/educador (a) comunitario (a) en salud';
-'assi' = 'Trabajo social';
-'enfe' = 'Enfermería';
-'fisi' = 'Fisioterapia';
-'medi' = 'Medicina';
-'nutr' = 'Nutrición';
-'dire' = 'Derecho';
-'poli' = 'Policía';
-'doce' = 'Docencia';
-'tecn' = 'Auxiliar/ técnico de enfermería';
-'psic' = 'Psicología';
-'estud' = 'Estudiante';
-'other' = 'Otro';"
-
-colnames(tb_main_ocupation) <- c("Ocupation", "freq")
-tb_main_ocupation$Ocupation <- as.character(Recode(tb_main_ocupation$Ocupation, ocupations))
-
-ocupation_table <- mutate(tb_main_ocupation, freq.per = freq / sum(freq)*100)
-ocupation_table <- arrange(ocupation_table, - freq)
-kable(ocupation_table, 
-      caption = "Ocupação principal dos participantes", 
-      digits = 1, align = c("l","c","c"),
-      col.names = c("Actuación profesional", "N", "%"))
-```
-
-A principal área de atuação dos profissionais foi psicologia (56,8%), seguido de assistentes sociais (13,4%), medicina (7,5%) e enfermagem (6,4%). Outras categorias com mais de 30 respostas foram: docência e agentes/líderes/educadores comunitários.
-
-
-```{r,echo = FALSE, warning = FALSE, fig.margin = TRUE, fig.cap = "Actuación profesional", fig.width=5, fig.height=6}
-ggplot(ocupation_table, aes(reorder(Ocupation, freq.per),  freq.per)) + geom_col(fill = "#7cb5ec") +
-  coord_flip() + theme_hc() + scale_colour_hc() + 
-  labs( 
-       x = "",
-       y = "Frequência (%)")
-```
-
-
-```{r, echo = FALSE, warning = FALSE, fig.margin = FALSE,  fig.cap = "Posición el el trabajo", fig.width=7, fig.height=5}
-workposition <- data.frame(cbind(t(sapply(students[,11:16], function(x) prop.table(table(x))*100, simplify = TRUE))[,2]))
-rownames(workposition) <- c("Dirección de la institución","Coordinación de equipo", "Hago parte de un equipo de trabajo","Miembro del cuadro de funcionarios", "Trabajador independiente", "Otro")
-colnames(workposition) <- c("freq.per")
-workposition$names <-rownames(workposition)
-
-ggplot(workposition, aes(reorder(names, freq.per),  freq.per)) + geom_col(fill = "#7cb5ec") +
-  coord_flip() + theme_hc() + scale_colour_hc() +
-  labs( 
-       x = "",
-       y = "Frequência (%)")
-
-```
-
-A maior parte dos profissionais definiu a ocupação como faço parte de uma equipe de trabalho (65,1%), seguido de coordenação de equipe (20,8%) e direção de instituição (8,9%).
-
-### Treinamento
-
-A maioria dos profissionais recebeu curso de formação, sendo avaliada certificada. Entre os respondentes, 83,3% disseram ter participado de algum curso de formação específico para a atuação na área de álcool, tabaco e outras substâncias.
-
-```{r, echo = FALSE, warning = FALSE, fig.margin = TRUE,  fig.cap = "¿Formación específica?"}
-# ¿Realizó algún curso de formación específica para la actuación en el área de alcohol, tabaco y otras sustancias? 
-df <- subset(students, !is.na(students$professionals.training_questions.t_training_boolean))
-students$professionals.training_questions.t_training_boolean <- Recode(students$professionals.training_questions.t_training_boolean,
-                                                                       "'yes' = 'Sí'; 'no' = 'No'")
-ggplot(df, aes(x = factor(professionals.training_questions.t_training_boolean), y = (..count..)/sum(..count..))) + 
-  geom_bar(na.rm = TRUE, fill = "#7cb5ec", width = .5) + xlab("") + ylab("Frequência (%)") + 
-  theme_hc() + scale_colour_hc() + 
-  scale_y_continuous(labels = scales::percent)
-```
-
-Entre aqueles que disseram ter participado, 90,7% disseram ter realizado uma avaliação durante o curso e 88,1% recebeu alguma certificação.
-
-```{r, echo = FALSE, warning = FALSE, fig.margin = TRUE,  fig.cap = "¿Evaluado en el curso?"}
-# ¿Usted fue evaluado en el curso?
-df <- subset(students, !is.na(students$professionals.training_questions.training_skip.training_assessment))
-students$professionals.training_questions.training_skip.training_assessment <- Recode(students$professionals.training_questions.training_skip.training_assessment,
-                                                                       "'yes' = 'Sí'; 'no' = 'No'")
-ggplot(df, aes(x = factor(professionals.training_questions.training_skip.training_assessment), y = (..count..)/sum(..count..))) + 
-  geom_bar(na.rm = TRUE, fill = "#7cb5ec", width = .5) + xlab("") + ylab("Frequência (%)") + 
-  theme_hc() + scale_colour_hc() + 
-  scale_y_continuous(labels = scales::percent)
-```
-
-```{r, echo = FALSE, warning = FALSE, fig.margin = TRUE,  fig.cap = "¿Recibió certificado?"}
-# ¿Recibió certificado por su participación en el curso?
-df <- subset(students, !is.na(students$professionals.training_questions.training_skip.training_certification))
-students$professionals.training_questions.training_skip.training_certification <- Recode(students$professionals.training_questions.training_skip.training_certification,
-                                                                       "'yes' = 'Sí'; 'no' = 'No'")
-ggplot(df, aes(x = factor(professionals.training_questions.training_skip.training_certification), y = (..count..)/sum(..count..))) + 
-  geom_bar(na.rm = TRUE, fill = "#7cb5ec", width = .5) + xlab("") + ylab("Frequência (%)") + 
-  theme_hc() + scale_colour_hc() + 
-  scale_y_continuous(labels = scales::percent)
-```
-
-```{r, echo = FALSE, include = FALSE}
-# ¿Cuál fue la capacitación que usted realizó? Otros
-data.frame(cbind(t(sapply(students[,24:29], function(x) prop.table(table(x))*100, simplify = TRUE))))
-```
-
-O curso de capacitação mais realizado pelos profissionais foi ASSIST-DIT (31,5%), seguido do SUPERA (16,3%). A categoria outros foi muito mais frequente, indicando que as categorias não foram adequadas. Dentre a categoria outros, diversos cursos foram citados como:
-
-* AUDIT-DIT,
-* Capacitação para Comunidades Terapêuticas, 
-* Especialidad en promoción de la Salud y Prevención del Comportamiento Adictivo (UNAM), 
-* Prevenção ao uso indevido de drogas para conselheiros (UFSC), 
-* Procedimientos Cognitivos Conductuales a través de la acción comunitaria para la prevención del comportamiento adictivo y de la supervisión de los profesionales.
-
-O número de horas de capacitação foi bastante heterogêneo entre os profissionais. O valor mediano de horas da carga horária das capacitações foi de 50 (DIQ = 142,5). Nove entre dez profissionais disseram que sentem que a capacitação realizada os ajudaram a realizar rastreio e intervenção breve.
-
-```{r, echo = FALSE, fig.margin = TRUE, warning = FALSE, fig.cap = "Carga horária relatada"}
-ggplot(subset(students, !is.na(students$professionals.training_questions.training_skip.training_length)), aes(y = professionals.training_questions.training_skip.training_length, x = "")) + 
-  geom_boxplot() + coord_flip() + 
-  xlab("") + ylab("") + 
-  theme_hc() + scale_colour_hc()
-```
-
-
-### Atuação profissional
-
-Aproximadamente três entre quatro profissionais disseram realizar intervenções breves no dia-a-dia do trabalho. A experiência mediana com intervenções breves foi de 7 anos (DIQ = 5).
-
-```{r, echo = FALSE, fig.margin = TRUE, warning = FALSE, fig.cap = "Ano de início de trabalho com IB's"}
-since_year <- as.numeric(students$professionals.training_questions.work_skip.work_sinceyear)
-since_year <- subset(since_year, since_year > 1900 & since_year <= 2017)
-ggplot() + aes(since_year, y = (..count..)/sum(..count..)) + geom_histogram(binwidth=1, fill = "#7cb5ec") + 
-  theme_hc() + scale_colour_hc() +
-  labs(x = "Ano", y = "Frequência (%)") +
-  scale_y_continuous(labels = scales::percent)
-```
-
-A maior parte dos profissionais trabalha no setor público (90,9%) quando comparados com o setor privado (11,1%) e Organizações não governamentais (8,1%). A soma destas categorias é maior que 100% uma vez que um mesmo profissional pode trabalhar em mais de um setor.
-
-```{r, echo = FALSE, warning = FALSE, fig.margin = FALSE,  fig.cap = "Tipo de serviço", fig.width=10, fig.height=5}
-servicetype <- data.frame(mapply(c, students[, 36:38], students[, 110:112]))
-servicetype <- data.frame(cbind(t(sapply(servicetype, function(x) prop.table(table(x))*100, simplify = TRUE))))
-rownames(servicetype) <- c("Público","Privado", "ONG's")
-colnames(servicetype) <- c("No", "Sí")
-servicetype$names <-rownames(servicetype)
-servicetype <- servicetype %>%
-                  gather(Resposta, Valor, No:Sí)
-
-ggplot(servicetype, aes(x = names, y = Valor, fill = factor(Resposta))) + geom_bar(stat = "identity", position = "stack") +
-  coord_flip() + theme_hc() + scale_colour_hc() + ylim(0,100) + 
-  scale_fill_manual(name = "Resposta", values = c("#f7a35c", "#7cb5ec"),labels = c("No", "Sí")) + 
-  labs(  
-       x = "",
-       y = "Frequência (%)")
-
-```
-
-Sobre o setor do serviço, a maior parte dos profissionais disse trabalhar na saúde (79,8%). Depois, educação (24,6%), serviço social (10,7%), outros (6,5%) e justiça (2,1%).
-
-```{r, , echo = FALSE, results = 'asis'}
-worksector <- data.frame(mapply(c, students[,39:43], students[, 113:117]))
-worksector <- data.frame(cbind(t(sapply(worksector, function(x) prop.table(table(x))*100, simplify = TRUE))[,2]))
-rownames(worksector) <- c("Serviço Social","Saúde", "Educação", "Justiça", "Outro")
-colnames(worksector) <- c("Sí")
-
-kable(worksector, 
-      caption = "¿En qué contexto usted trabaja realizando  detección temprana e intervención breve?", 
-      digits = 1, align = c("c"),
-      col.names = c("Sí (%)"),
-      row.names = TRUE)
-
-```
-
-## Centros
+# Centros de Capacitação em Intervenções Breves
 Os dados apresentados nesta seção são agregados. Caso o leitor tenha interesse em conhecer as características dos centros individuais, recomendamos a leitura do outro produto desta consultoria "Censo de Los Programas de Detección Temprana e Intervención Breve, Desarrolados en la Región de las Américas a partir del 2005."[^2]
 
 [^2]: O censo está disponível neste [link](#Inserir link)
 
-# Tabelas 
-
-## Profissionais
-
-```{r, echo = FALSE, results = 'asis'}
-# ¿Realizó algún curso de formación específica para la actuación en el área de alcohol, tabaco y otras sustancias?
-training_bol <- students$professionals.training_questions.t_training_boolean
-training_bol <- Recode(training_bol,
-                      "'yes' = 'Sí'; 'no' = 'No'")
-makeTable(training_bol,
-          "Frequência de profissionais que receberam intervenções breves")
-```
-
-```{r, echo = FALSE, results = 'asis'}
-# ¿Usted fue evaluado en el curso?
-training_table <- students$professionals.training_questions.training_skip.training_assessment
-training_table <- Recode(training_table,
-                        "'yes' = 'Sí'; 'no' = 'No'")
-makeTable(training_table,
-          "¿Usted fue evaluado en el curso?")
-```
-
-```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
-# ¿Recibió certificado por su participación en el curso?
-certificado_tb <- students$professionals.training_questions.training_skip.training_certification
-certificado_tb <- Recode(certificado_tb,
-                        "'yes' = 'Sí'; 'no' = 'No'")
-makeTable(certificado_tb, 
-          "Frequência de profissionais que receberam certificação")
-```
-
-```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
-# ¿Siente que la capacitación le ayudó en su trabajo para hacer detección temprana e intervención breve?
-ib_tb <- students$professionals.training_questions.training_skip.training_bi_useful 
-ib_tb <- Recode(ib_tb,
-          "'yes' = 'Sí'; 'no' = 'No'")
-makeTable(ib_tb, 
-          "¿Siente que la capacitación le ayudó en su trabajo para hacer detección temprana e intervención breve?")
-```
-
-```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
-# ¿Realiza usted detección temprana e intervención breve en su día a día en el trabajo? 
-workib_tb <- students$professionals.training_questions.t_work_bi_screening
-workib_tb <- Recode(workib_tb,
-                    "'yes' = 'Sí'; 'no' = 'No'")
-makeTable(workib_tb, 
-          "¿Realiza usted detección temprana e intervención breve en su día a día en el trabajo?")
-```
-
-
-```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
-# Sector salud
-worktype <- data.frame(c(students$professionals.training_questions.work_skip.sector_health.work_type_health, students$professionals.screening_questions.screening_skip_3.sector_health_no.work_type_health_no))
-worktype <- Recode(worktype[,1],
-                   "'amb' = 'Ambulatorio/consulta externa'; 
-                    'hospitals' = 'Hospitales';
-                    'mentalhealth' = 'Centro Comunitario de Tratamento de salud mental/adicciones';
-                    'primarycare' = 'Atención Primaria en Salud';
-                    'other' = 'Otros'
-                   ")
-makeTable(worktype, "Sector salud")
-```
-
-
-```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
-# Sector educativo
-educationtype <- data.frame(c(students$professionals.training_questions.work_skip.sector_education.work_type_education, students$professionals.screening_questions.screening_skip_3.sector_education_no.work_type_education_no))
-
-educationtype <- Recode(educationtype[,1],
-                       "'prim' = 'Educación Primaria'; 
-                        'sec' = 'Educación Secundaria';
-                        'sup' = 'Educación Superior/ Universitaria';
-                        'other' = 'Otros'
-                       ")
-makeTable(educationtype, "Sector educativo")
-```
-
-
-```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
-# ¿Para qué tipo de población están orientadas las capacitaciones?
-target_audience <- data.frame(cbind(t(sapply(students[,50:57], function(x) prop.table(table(x))*100, simplify = TRUE))[,2]))
-rownames(target_audience) <- c("Usuarios de Atención Primaria en Salud",
-                          "Usuarios de otros servicios especializados (excepto alcohol y otras drogas )",
-                          "Usuarios de servicios comunitarios",
-                          "Usuarios en contextos laborales",
-                          "Población carcelaria",
-                          "Población en situación de calle",
-                          "Escuela",
-                          "Otros"
-                          )
-
-target_audience <- rownames_to_column(target_audience, "options")
-colnames(target_audience) <- c("options", "Sí")
-
-kable(arrange(target_audience, -Sí), 
-      caption = "¿Para qué tipo de población están orientadas las capacitaciones?", 
-      digits = 1, align = c("l", "c"),
-      col.names = c("", "Sí (%)"))
-```
-
-
-```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
-# Cuando indaga por el consumo de drogas ¿utiliza algún cuestionario para la detección temprana (AUDIT, ASSIST, CAGE, DUSI, FAGERSTROM)?
-screening_question <- students$professionals.screening_questions.screening_question
-screening_question <- Recode(screening_question,
-                             "'yes' = 'Sí'; 
-                             'no' = 'No';
-                             'nobut' = 'No, pregunto sin utilizar un cuestionario específico'
-                             ")
-makeTable(screening_question, 
-          "Cuando indaga por el consumo de drogas ¿utiliza algún cuestionario para la detección temprana (AUDIT, ASSIST, CAGE, DUSI, FAGERSTROM)?")
-```
-
-```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
-# ¿Cuáles son los instrumentos de detección temprana (despistaje/cribado/tamización) que suele utilizar durante sus intervenciones?
-screen_tools <- students[, 60:65]
-screen_tools <- data.frame(cbind(t(sapply(screen_tools, function(x) prop.table(table(x))*100, simplify = TRUE))[,2]))
-rownames(screen_tools) <- c("ASSIST – Prueba de Detección de Consumo de Alcohol, Tabaco y Sustancias",
-                          "AUDIT – Test de Identificación de Trastornos debido al Consumo de Alcohol",
-                          "CAGE – Cuestionario detección de problemas relacionados con el consumo de alcohol",
-                          "DUSI – Inventario de Despistaje de Uso de Drogas",
-                          "FAGERSTROM – Test de Fagerström de dependencia de la nicotina",
-                          "Otros"
-                          )
-colnames(screen_tools) <- c("Sí")
-screen_tools <- rownames_to_column(screen_tools, "options")
-kable(arrange(screen_tools, - Sí), 
-      caption = "¿Cuáles son los instrumentos de detección temprana (despistaje/cribado/tamización) que suele utilizar durante sus intervenciones?", 
-      digits = 1, align = c("l", "c"),
-      col.names = c("", "(%)"))
-```
-
-
-```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
-# ¿Cuáles son las sustancias abordadas?
-substances <- students[, 67:78]
-substances_table <- data.frame(cbind(t(sapply(substances, function(x) prop.table(table(x))*100, simplify = TRUE))[,2]))
-rownames(substances_table) <- c("Alcohol",
-                          "Tabaco",
-                          "Cocaína inhalada",
-                          "Cocaína fumable",
-                          "Marihuana",
-                          "Anfetaminas",
-                          "Alucinógenos",
-                          "Inhalantes",
-                          "Hipnóticos/sedantes",
-                          "Drogas inyectables",
-                          "Opiáceos",
-                          "Otros"
-                          )
-
-colnames(substances_table) <- c("Sí")
-substances_table <- rownames_to_column(substances_table, "options")
-kable(arrange(substances_table, - Sí), 
-      caption = "¿Cuáles son las sustancias abordadas?", 
-      digits = 1, align = c("c"),
-      col.names = c("", "(%)"))
-```
-
-```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
-# ¿Utiliza cartillas/ folletos/tarjetas/ como parte del material informativo y de apoyo  durante la intervención breve?
-screeningbooklets <- students$professionals.screening_questions.screening_skip_2.screening_booklets
-screeningbooklets <- Recode(screeningbooklets,
-                           "'yes' = 'Sí'; 
-                           'no' = 'No';
-                           'other' = 'Utiliza otros recursos'
-                           ")
-makeTable(screeningbooklets, 
-          "¿Utiliza cartillas/ folletos/tarjetas/ como parte del material informativo y de apoyo  durante la intervención breve?")
-```
-
-```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
-# ¿Realiza algún tipo de seguimiento o acompañamiento a los usuarios que participaron de la  intervención breve?
-followup <- students$professionals.screening_questions.screening_skip_2.screening_followup
-followup <- Recode(followup,
-                           "'yes' = 'Sí'; 
-                           'no' = 'No';
-                           ")
-makeTable(followup, 
-          "¿Realiza algún tipo de seguimiento o acompañamiento a los usuarios que participaron de la  intervención breve?")
-```
-
-```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
-# ¿Con qué frecuencia se realiza el acompañamiento ?
-followup_freq <- students$professionals.screening_questions.screening_skip_2.screening_followup_frequency
-followup_freq <- Recode(followup_freq,
-                           "'weekly' = 'Semanal'; 
-                           'monthly' = 'Mensual';
-                            'semiannually' = 'Semestralmente';
-                            'annually' = 'Anual'")
-makeTable(followup_freq, 
-          "¿Con qué frecuencia se realiza el acompañamiento?")
-```
-
-
-```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
-# ¿Cuál es el protocolo adoptado para casos de bajo riesgo de consumo de alcohol, tabaco y otro tipo de sustancias?
-low_risk <- students$professionals.screening_questions.screening_skip_2.intervention_knowledge.intervention_lowrisk
-low_risk <- Recode(low_risk,
-                           "'referralspecial' = 'Remisión/derivación a servicios especializados'; 
-                           'referralselfhelp' = 'Remisión/derivación a grupo de ayuda–mutua o soporte comunitario';
-                            'quickinterventionno' = 'Realizar intervención educativa y entrega de material informativo (folletos, tarjetas, cartillas)';
-                            'quickinterventionyes' = 'Realizar abordaje educativo SIN material de apoyo (folletos, tarjetas, cartillas)';
-                            'none' = 'No adopto ningún procedimiento'")
-makeTable(low_risk, 
-          "¿Cuál es el protocolo adoptado para casos de bajo riesgo de consumo de alcohol, tabaco y otro tipo de sustancias?")
-```
-
-```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
-# ¿Cuál es el protocolo seguido para los casos de consumo de riesgo de alcohol, tabaco y otro tipo de sustancias?
-at_risk <- students$professionals.screening_questions.screening_skip_2.intervention_knowledge.intervention_atrisk
-at_risk <- Recode(at_risk,
-                           "'referralspecial' = 'Remisión/derivación a servicios especializados'; 
-                           'referralselfhelp' = 'Remisión/derivación a grupo de ayuda–mutua o soporte comunitario';
-                            'quickinterventionno' = 'Realizar intervención educativa y entrega de material informativo (folletos, tarjetas, cartillas)';
-                            'quickinterventionyes' = 'Realizar abordaje educativo SIN material de apoyo (folletos, tarjetas, cartillas)';
-                            'none' = 'No adopto ningún procedimiento'")
-makeTable(at_risk, 
-          "¿Cuál es el protocolo seguido para los casos de consumo de riesgo de alcohol, tabaco y otro tipo de sustancias?")
-```
-
-```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
-# ¿Cuál es el protocolo en el caso de usuarios que cumplen los criterios diagnósticos de dependencia de drogas?
-dependence <- students$professionals.screening_questions.screening_skip_2.intervention_knowledge.intervention_dependence
-dependence <- Recode(dependence,
-                           "'referralspecial' = 'Remisión/derivación a servicios especializados'; 
-                           'referralselfhelp' = 'Remisión/derivación a grupo de ayuda–mutua o soporte comunitario';
-                            'quickinterventionno' = 'Realizar intervención educativa y entrega de material informativo (folletos, tarjetas, cartillas)';
-                            'quickinterventionyes' = 'Realizar abordaje educativo SIN material de apoyo (folletos, tarjetas, cartillas)';
-                            'none' = 'No adopto ningún procedimiento'")
-makeTable(dependence, 
-          "¿Cuál es el protocolo en el caso de usuarios que cumplen los criterios diagnósticos de dependencia de drogas?")
-```
-
-```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
-# Escoja la opción que mejor representa la práctica de detección temprana e intervención breve en su institución de trabajo
-screening_work <- students$professionals.screening_questions.screening_skip.screening_work
-screening_work <- Recode(screening_work,
-                   "'onlyone' = 'Soy el único profesional de mi equipo que realiza detección temprana e IB'; 
-                   'afew' = 'Pocos profesionales de mi equipo realizan detección temprana e IB';
-                    'more' = 'Muchos profesionales de mi equipo realizan detección temprana e IB';
-                    'almost' = 'Casi todos los profesionales de mi equipo realizan detección temprana e IB';
-                    'donot' = 'No actúo con equipos de trabajo.'")
-makeTable(screening_work, 
-          "Escoja la opción que mejor representa la práctica de detección temprana e intervención breve en su institución de trabajo")
-```
-
-```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
-# ¿Considera que la detección temprana e intervención breve contribuyen para reducir el consumo y daños asociados al abuso de sustancias psicoactivas de la población que usted atiende?
-bi_effec <- students$professionals.screening_questions.screening_skip.bi_perception.bi_effectiveness
-bi_effec <- Recode(bi_effec,
-                           "'yes' = 'Sí'; 
-                           'no' = 'No';
-                           ")
-makeTable(bi_effec, 
-          "¿Considera que la detección temprana e intervención breve contribuyen para reducir el consumo y daños asociados al abuso de sustancias psicoactivas de la población que usted atiende?")
-```
-
-```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
-# ¿Evalúa los resultados de la detección temprana e intervención breve en su práctica cotidiana de trabajo?
-bi_eva <- students$professionals.screening_questions.screening_skip.bi_perception.bi_evaluation
-bi_eva <- Recode(bi_eva,
-                       "'yes' = 'Sí'; 
-                       'no' = 'No';
-                       ")
-makeTable(bi_eva, 
-          "¿Evalúa los resultados de la  detección temprana e intervención breve en su práctica cotidiana de trabajo?")
-```
-
-```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
-# ¿Cuáles de las siguientes opciones facilitan la implementación de detección temprana e intervención breve en la práctica profesional?
-roadblocks1 <- students[, 93:96]
-roadblocks1 <- data.frame(cbind(t(sapply(roadblocks1, function(x) prop.table(table(x))*100, simplify = TRUE))[,2]))
-rownames(roadblocks1) <- c("Apoyo por parte de las autoridades, gestores, gerentes o responsables del servicio",
-                          "Inclusión del procedimiento en las pautas y normas obligatorias",
-                          "Programa de actualización para el equipo de atención ",
-                          "Otros"
-                          )
-
-colnames(roadblocks1) <- c("Sí")
-
-kable(roadblocks1, 
-      caption = "¿Cuáles de las siguientes opciones facilitan la implementación de detección temprana e intervención breve en la práctica profesional?", 
-      digits = 1, align = c("c"),
-      col.names = c("Sí (%)"))
-```
-
-
-```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
-# ¿Cuáles de las siguintes opciones dificultan la implementación de las actividades de detección temprana e intervención breve?
-roadblocks2 <- students[, 98:105]
-roadblocks2 <- data.frame(cbind(t(sapply(roadblocks2, function(x) prop.table(table(x))*100, simplify = TRUE))[,2]))
-rownames(roadblocks2) <- c("Falta de apoyo por parte de las autoridades, gestores, gerentes o responsables",
-                          "Falta de tiempo (sobrecarga de actividades)",
-                          "Falta de entrenamiento",
-                          "Falta de supervisión",
-                          "Falta de apoyo por parte de otros miembros del equipo",
-                          "Falta de una red de servicios para remitir/derivar los casos",
-                          "Falta de conocimientos sobre el consumo de alcohol y drogas en la población",
-                          "Otros"
-                          )
-
-colnames(roadblocks2) <- c("Sí")
-
-kable(roadblocks2, 
-      caption = "¿Cuáles de las siguintes opciones dificultan la implementación de las actividades de detección temprana e intervención breve?", 
-      digits = 1, align = c("c"),
-      col.names = c("Sí (%)"))
-```
-
-```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
-# ¿Identifica  alguna práctica exitosa en la implementación de detección temprana e intervención breve?
-successful <- students$professionals.screening_questions.screening_skip.roadblocks_questions.successful_experience
-successful <- Recode(successful,
-                           "'yes' = 'Sí'; 
-                           'no' = 'No';
-                           ")
-makeTable(successful, 
-          "¿Identifica alguna práctica exitosa en la implementación de detección temprana e intervención breve?")
-```
-
-
-## Centros
-
+## Características dos centros
 
 ```{r echo = FALSE, fig.margin = FALSE, fig.cap = "Frequência de participação por país"}
 countries_data <- data.frame(table(centers$center.center_training_questions.training_place))
@@ -822,84 +251,26 @@ countries_table <- filter(countries_data, country != "other")
 countries_table <- mutate(countries_table, freq.per = freq / sum(freq)*100)
 
 kable(arrange(countries_table, - freq), 
-      caption = "Distribuição dos centros por país", 
+      caption = "Distribuição de resposta dos centros de formação por país", 
       digits = 1, align = c("l","c","c"),
       col.names = c("País", "N", "%"))
 ```
 
+A maioria dos centros (75%) estava ativo no momento da pesquisa, ou seja, ofereciam algum tipo de capacitação atual. A principal forma de capacitação oferecida é presencial (91,2%). Há uma importante variação da carga horária dos cursos com mediana de `r median(centers$center.center_training_questions.training_length, na.rm = TRUE)` horas, com um mínimo de `r min(centers$center.center_training_questions.training_length, na.rm = TRUE)` horas e máximo de `r max(centers$center.center_training_questions.training_length, na.rm = TRUE)` horas (Tabela 4).
 
 ```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
-# ¿La capacitación es ofrecida actualmente?
-current <- centers$center.center_training_questions.training_current
-current <- Recode(successful,
-                           "'yes' = 'Sí'; 
-                           'no' = 'No';
-                           ")
-makeTable(current, 
-          "¿La capacitación es ofrecida actualmente?")
+merged_table <- data.frame(a = c("Oferecida atualmente", "", "Módulo destinado a IB", "", "Modalidade", "", ""),
+                           b = c("Sim", "Não", "Sim", "Não", "Presencial", "À distância", "Semipresencial"),
+                           N = c(76,26,76,26,93,14,6),
+                           freq = c(74.5,25.5,74.5,25.5,91.2,13.7,5.9))
+
+kable(merged_table, 
+      caption = "Características das capacitações oferecidas pelos centros", 
+      digits = 1, align = c("l", "l", "c", "c"),
+      col.names = c("", "", "N", "%"))
 ```
 
-
-```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
-# ¿Cuál es la modalidad de la capacitación?
-traintype <- centers[, 131:133]
-traintype <- data.frame(cbind(t(sapply(traintype, function(x) prop.table(table(x))*100, simplify = TRUE))[,2]))
-rownames(traintype) <- c("Presencial",
-                          "Semipresencial",
-                          "A distancia"
-                          )
-
-colnames(traintype) <- c("Sí")
-
-kable(traintype, 
-      caption = "¿Cuál es la modalidad de la capacitación?", 
-      digits = 1, align = c("c"),
-      col.names = c("Sí (%)"))
-```
-
-```{r, echo = FALSE, fig.margin = FALSE, warning = FALSE, fig.cap = "Carga horária dos treinamentos"}
-ggplot(subset(centers, !is.na(centers$centers$center.center_training_questions.training_length)), aes(y = centers$center.center_training_questions.training_length, x = "")) + 
-  geom_boxplot() + coord_flip() + 
-  xlab("") + ylab("") + 
-  theme_hc() + scale_colour_hc()
-```
-
-```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
-# ¿Algún módulo fue destinado para el tema de detección temprana e intervención breve?
-training_bi <- centers$center.center_training_questions.training_bi
-training_bi <- Recode(training_bi,
-                           "'yes' = 'Sí'; 
-                           'no' = 'No';
-                           ")
-makeTable(training_bi, 
-          "¿Algún módulo fue destinado para el tema de detección temprana e intervención breve?")
-```
-
-```{r, echo = FALSE, results = 'asis'}
-training_public <- centers[, 138:150]
-training_public <- data.frame(cbind(t(sapply(training_public, function(x) prop.table(table(x))*100, simplify = TRUE))[,2]))
-rownames(training_public) <- c('Agente/líder/educador (a) comunitario (a) en salud',
-                               'Trabajo social',
-                              'Enfermería',
-                              'Fisioterapia',
-                              'Medicina',
-                              'Nutrición',
-                              'Derecho',
-                              'Policía',
-                              'Docencia',
-                              'Auxiliar/ técnico de enfermería',
-                              'Psicología',
-                              'Estudiante',
-                              'Otro')
-
-colnames(training_public) <- c("Sí")
-
-kable(training_public, 
-      caption = "Categorías profesionales capacitadas", 
-      digits = 1, align = c("c"),
-      col.names = c("%"))
-```
-
+Em relação à origem, os centros se caracterizam principalmente por serem públicos (78,9%) em detrimento às organizações não-governamentais (13,2%) e ao setor privado (7,9%).
 
 ```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
 # ¿A qué tipo de servicio pertenece el centro de capacitación?
@@ -907,143 +278,630 @@ training_sector <- centers$center.center_training_questions.full_questionnaire.t
 training_sector <- Recode(training_sector,
                            "'public' = 'Público'; 
                            'private' = 'Privado';
-                            'ngos' = 'Organizaciones no gubernamentales (ONG)';
+                            'ngos' = 'Organizações não governamentais (ONG)';
                            ")
 makeTable(training_sector, 
-          "¿A qué tipo de servicio pertenece el centro de capacitación?")
+          "Origem/tipo do Centro de Capacitação")
 ```
+
+Na Tabela 5, apresentamos a porcentagem do público alvo capacitado em termos de categoria profissional. A maior frequência de profissionais capacitados foi de psicólogos (72,4%), seguidos de assistentes sociais (71,1%) e enfermeiros (56,6%). É importante ressaltar que a soma das porcentagens é maior que 100%, pois cada centro capacitou diferentes categorias profissionais.
+
+```{r, echo = FALSE, results = 'asis'}
+training_public <- centers[, 138:150]
+training_public <- data.frame(cbind(t(sapply(training_public, function(x) prop.table(table(x))*100, simplify = TRUE))[,2]))
+rownames(training_public) <- c('Agente/Líder/Educador comunitário da saúde',
+                               'Assistente Social',
+                              'Enfermagem',
+                              'Fisioterapia',
+                              'Medicina',
+                              'Nutrição',
+                              'Direito',
+                              'Polícia',
+                              'Docência',
+                              'Auxiliar/ técnico de enfermagem',
+                              'Psicologia',
+                              'Estudante',
+                              'Outro')
+
+training_public <- rownames_to_column(training_public, "options")
+colnames(training_public) <- c("options", "Sim")
+
+kable(arrange(training_public, -Sim), 
+      caption = "Profissionais capacitados por categoria", 
+      digits = 1, align = c("l", "c"),
+      col.names = c("", "Sí (%)"))
+
+```
+
+## Recursos
+
+A grande maioria dos centros (73,7%)  incluiu a utilização de instrumentos de triagem no conteúdo das capacitações, sendo o AUDIT (85,7%) e ASSIST (75,0%) os mais utilizados (Tabela 7).
 
 ```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
-# ¿Durante la capacitación los estudiantes entrenaron el uso de instrumentos como (AUDIT, ASSIST, CAGE, DUSI, FAGERSTROM)?
-screentool_bol <- centers$center.center_training_questions.full_questionnaire.training_screening_tool_boolean
-screentool_bol <- Recode(screentool_bol,
-                           "'yes' = 'Sí'; 
-                           'no' = 'No';
-                           ")
-makeTable(screentool_bol, 
-          "¿Durante la capacitación los estudiantes entrenaron el uso de instrumentos como (AUDIT, ASSIST, CAGE, DUSI, FAGERSTROM)?")
+merged_table <- data.frame(a = c("Uso de instrumentos", "", "Instrumentos", "", "", "", "", ""),
+                           b = c("Sí", "No", "AUDIT", "ASSIST", "FAGERSTROM", "CAGE", "DUSI", "Outros"),
+                           N = c(56,20,48,42,33,18,5,41),
+                           freq = c(73.7,26.3,85.7,75.0,58.9,32.1,8.9,26.8))
+
+kable(merged_table, 
+      caption = "Inclusão de Instrumentos de Triagem na Capacitação? Qual (is)?", 
+      digits = 1, align = c("l", "l", "c", "c"),
+      col.names = c("", "", "N", "%"))
 ```
 
-```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
-# ¿Cuáles son los instrumentos de detección temprana (despistaje/cribado/tamización) que suele utilizar durante sus intervenciones?
-screen_tools <- centers[, 175:180]
-screen_tools <- data.frame(cbind(t(sapply(screen_tools, function(x) prop.table(table(x))*100, simplify = TRUE))[,2]))
-rownames(screen_tools) <- c("ASSIST – Prueba de Detección de Consumo de Alcohol, Tabaco y Sustancias",
-                          "AUDIT – Test de Identificación de Trastornos debido al Consumo de Alcohol",
-                          "CAGE – Cuestionario detección de problemas relacionados con el consumo de alcohol",
-                          "DUSI – Inventario de Despistaje de Uso de Drogas",
-                          "FAGERSTROM – Test de Fagerström de dependencia de la nicotina",
-                          "Otros"
-                          )
-colnames(screen_tools) <- c("Sí")
-kable(screen_tools, 
-      caption = "¿Cuáles son los instrumentos de detección temprana (despistaje/cribado/tamización) que suele utilizar durante sus intervenciones?", 
-      digits = 1, align = c("c"),
-      col.names = c("Sí (%)"))
-```
-
+Os recursos pedagógicos mais frequentemente utilizados foram vídeos (78,9%) e livros, folhetos informativos (73,7%) e cartilhas (42,1%) (Tabela 8).
 
 ```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
 # ¿Qué tipo de recursos son utilizados?
 teaching_sources <- centers[, 181:185]
 teaching_sources <- data.frame(cbind(t(sapply(teaching_sources, function(x) prop.table(table(x))*100, simplify = TRUE))[,2]))
-rownames(teaching_sources) <- c("Libros o folletos informativos",
-                          "Videos",
-                          "Audios",
-                          "Cartillas",
-                          "Otros"
+rownames(teaching_sources) <- c("Livros ou folhetos informativos",
+                          "Vídeos",
+                          "Áudios",
+                          "Cartilhas",
+                          "Outros"
                           )
-colnames(teaching_sources) <- c("Sí")
-kable(teaching_sources, 
-      caption = "¿Qué tipo de recursos son utilizados?", 
-      digits = 1, align = c("c"),
-      col.names = c("Sí (%)"))
+teaching_sources <- rownames_to_column(teaching_sources, "options")
+colnames(teaching_sources) <- c("options", "Sim")
+kable(arrange(teaching_sources, -Sim), 
+      caption = "Recursos pedagógicos utilizados nas capacitações", 
+      digits = 1, align = c("l", "c"),
+      col.names = c("", "Sim (%)"))
 ```
+
+Foram perguntados sobre algumas características ou estratégias gerais utilizadas nas capacitações. A principal característica relatada pelos informantes foi dar um caráter mais prático para o treinamentos realizados, tais como a inclusão de situações práticas para verificar o conteúdo aprendido (83,9%) e a realização de atividades práticas (73,7%). Outras estratégias ou características foi o respaldo oficial das autoridades educativas (61,8%) a atualização continuada (57,9%) e o acompanhamento dos profissionais após a capacitação (50,0%). 
 
 ```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
-# ¿Fue otorgado un certificado oficialmente válido?
-training_certificate <- centers$center.center_training_questions.full_questionnaire.training_certification
-training_certificate <- Recode(training_certificate,
-                           "'yes' = 'Sí'; 
-                           'no' = 'No';
-                           ")
-makeTable(training_certificate, 
-          "¿Fue otorgado un certificado oficialmente válido?")
+# ¿Qué tipo de recursos son utilizados?
+courses_characteristcs <- centers[, c(187,194,196,197, 199,200)]
+courses_characteristcs <- data.frame(cbind(t(sapply(courses_characteristcs, function(x) prop.table(table(x))*100, simplify = TRUE))[,2]))
+rownames(courses_characteristcs) <- c("Certificado oficialmente válido",
+                          "Reconhecimento de autoridades da Educação",
+                          "Formação continuada",
+                          "Acompanhamento (pós-curso) das pessoas capacitadas",
+                          "Atividades práticas durante o curso",
+                          "Atividades práticas de avaliação"
+                          )
+colnames(courses_characteristcs) <- c("Sí")
+courses_characteristcs <- rownames_to_column(courses_characteristcs, "options")
+colnames(courses_characteristcs) <- c("options", "Sí")
+
+kable(arrange(courses_characteristcs, -Sí), 
+      caption = "Características e estratégias adotadas pelos centros", 
+      digits = 1, align = c("l", "c"),
+      col.names = c("", "Sim (%)"))
 ```
 
-```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
-# ¿El Centro de Formación cuenta con permisos especiales o respaldos oficiales de autoridades educativas (Ministerio/Secretaría de Educación)?
-official_certificate <- centers$center.center_training_questions.full_questionnaire.training_official_support
-official_certificate <- Recode(official_certificate,
-                           "'yes' = 'Sí'; 
-                           'no' = 'No';
-                           ")
-makeTable(official_certificate, 
-          "¿El Centro de Formación cuenta con permisos especiales o respaldos oficiales de autoridades educativas (Ministerio/Secretaría de Educación)?")
-```
-
-```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
-# ¿El Centro de Formación ofrece cursos de actualización continuada?
-training_update <- centers$center.center_training_questions.full_questionnaire.training_followup
-training_update <- Recode(training_update,
-                           "'yes' = 'Sí'; 
-                           'no' = 'No';
-                           ")
-makeTable(training_update, 
-          "¿El Centro de Formación ofrece cursos de actualización continuada?")
-```
-
-
-```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
-# ¿Existe alguna forma de acompañamiento o seguimiento para las personas que han sido capacitadas?
-training_followup <- centers$center.center_training_questions.full_questionnaire.training_followup_type
-training_followup <- Recode(training_followup,
-                           "'yes' = 'Sí'; 
-                           'no' = 'No';
-                           ")
-makeTable(training_followup, 
-          "¿Existe alguna forma de acompañamiento o seguimiento para las personas que han sido capacitadas?")
-```
-
-
-```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
-# ¿Durante la capacitación es realizada alguna práctica como complemento al contenido teórico presentado?
-training_practice <- centers$center.center_training_questions.full_questionnaire.training_practice
-training_practice <- Recode(training_practice,
-                           "'yes' = 'Sí'; 
-                           'no' = 'No';
-                           ")
-makeTable(training_practice, 
-          "¿Durante la capacitación es realizada alguna práctica como complemento al contenido teórico presentado?")
-```
-
-
-```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
-# ¿La evaluación realizada a las personas capacitadas propone situaciones prácticas que permitan verificar lo aprendido?
-training_assessment <- centers$center.center_training_questions.full_questionnaire.training_practice_assessment
-training_assessment <- Recode(training_assessment,
-                           "'yes' = 'Sí'; 
-                           'no' = 'No';
-                           ")
-makeTable(training_assessment, 
-          "¿La evaluación realizada a las personas capacitadas propone situaciones prácticas que permitan verificar lo aprendido?")
-```
-
+Os principais meios de divulgação das capacitações foram realizados através de indicação por autoridades locais, nacionais ou internacionais (77%), correios eletrônicos (40,8%) e redes sociais (39,5%) (Tabela 10).
 
 ```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
 # ¿Cómo se difunde la oferta académica del Centro de Formación?
 training_marketing <- centers[, 188:192]
 training_marketing <- data.frame(cbind(t(sapply(training_marketing, function(x) prop.table(table(x))*100, simplify = TRUE))[,2]))
-rownames(training_marketing) <- c("Redes sociales",
-                          "Página web del Centro de Formación",
-                          "Lista de correos electrónicos",
-                          "Referencia de autoridades locales, nacionales o internacionales",
-                          "Otros"
+rownames(training_marketing) <- c("Redes sociais",
+                          "Site na internet do centro de capacitação",
+                          "E-mails",
+                          "Indicação de autoridades locais, nacionais ou internacionais",
+                          "Outros"
                           )
 colnames(training_marketing) <- c("Sí")
 kable(training_marketing, 
-      caption = "¿Cómo se difunde la oferta académica del Centro de Formación?", 
+      caption = "Estratégias de divulgação das capacitações", 
       digits = 1, align = c("c"),
       col.names = c("Sí (%)"))
+```
+
+
+\clearpage
+
+# Profissionais
+
+### Características Sócio-demográficas
+
+Do total de 839 profissionais que participaram das respostas do presente relatório, em relação a variável sexo, aproxidamente dois terços da amostra era do sexo feminino (71,6%), indicando uma predominância de respostas deste gênero. O total de 28,4% de respondentes era do sexto masculino (Figura 2).
+
+Em relação à idade dos respondentes, os profissionais tinham em média `r round(mean(students$professionals.demographic_questions.d_age, na.rm = TRUE),1)` (DP = `r round(sd(students$professionals.demographic_questions.d_age, na.rm = TRUE),1)`) anos. A faixa etária das mulheres variou de menos de 20 anos a 70 anos, e a dos homens variou entre 20 a 80 anos. A idade entre homens foi mais dispersa quando comparada à das mulheres. Entre mulheres, houve uma concentração de respostas entre as faixas etárias de 30 a 40 anos, como pode ser visto na figura 3.
+
+```{r, echo = FALSE, warning = FALSE, fig.margin = TRUE,  fig.cap = "Distribuição de respostas por sexo dos participantes"}
+df <- subset(students, !is.na(students$professionals.demographic_questions.d_sex))
+df$professionals.demographic_questions.d_sex <- Recode(df$professionals.demographic_questions.d_sex, "'female'='Feminino';'male'='Masculino'")
+df$professionals.demographic_questions.d_age <- as.numeric(df$professionals.demographic_questions.d_age)
+```
+
+```{r, echo = FALSE, warning = FALSE, fig.margin = TRUE,  fig.cap = "Distribuição de respostas por sexo dos participantes"}
+df <- subset(students, !is.na(students$professionals.demographic_questions.d_sex))
+df$professionals.demographic_questions.d_sex <- Recode(df$professionals.demographic_questions.d_sex, "'female'='Feminino';'male'='Masculino'")
+
+ggplot(df, aes(x = factor(professionals.demographic_questions.d_sex), y = (..count..)/sum(..count..))) + 
+  geom_bar(na.rm = TRUE, fill = "#7cb5ec", width = .5) + xlab("Sexo") + ylab("Frequência (%)") + 
+  theme_hc() + scale_colour_hc() + 
+  scale_y_continuous(labels = scales::percent)
+```
+
+
+```{r echo = FALSE, warning=FALSE}
+students$professionals.demographic_questions.d_age <- as.numeric(students$professionals.demographic_questions.d_age)
+```
+
+Os profissionais tinham média de `r round(mean(students$professionals.demographic_questions.d_age, na.rm = TRUE),1)` (DP = `r round(sd(students$professionals.demographic_questions.d_age, na.rm = TRUE),1)`).
+
+```{r, echo = FALSE, fig.margin = TRUE, warning = FALSE, fig.cap = "Idade por sexo dos participantes"}
+ggplot(subset(students, !is.na(students$professionals.demographic_questions.d_age)), aes(professionals.demographic_questions.d_age, fill = professionals.demographic_questions.d_sex)) + 
+  geom_histogram(stat = "count") + 
+  xlab("Idade") + ylab("Frequência") + 
+  theme_hc() + scale_colour_hc() + 
+  scale_fill_manual(name = "Sexo", values = c("#f7a35c", "#7cb5ec"),labels = c("Feminino", "Masculino"))
+```
+
+
+```{r echo = FALSE, fig.margin = TRUE, fig.cap = "Concentração de respondentes por país"}
+countries_data <- data.frame(table(students$professionals.demographic_questions.d_country))
+# Recode Countries
+countries <- "'arge' = 'Argentina';
+'bras' = 'Brazil';
+'boli' = 'Bolivia';
+'chil' = 'Chile';
+'colo' = 'Colombia';
+'cost' = 'Costa Rica';
+'cuba' = 'Cuba';
+'el_s' = 'El Salvador';
+'equa' = 'Ecuador';
+'guat' = 'Guatemala';
+'hait' = 'Haiti';
+'hond' = 'Honduras';
+'mexi' = 'Mexico';
+'nica' = 'Nicaragua';
+'pana' = 'Panama';
+'para' = 'Paraguay';
+'peru' = 'Peru';
+'porto_rico' = 'Puerto Rico';
+'repu' = 'Dominican Republic';
+'sain' = 'Santa Lucia';
+'urug' = 'Uruguay';
+'vene' = 'Venezuela';"
+
+colnames(countries_data) <- c("country", "freq")
+countries_data$country <- as.character(Recode(countries_data$country, countries))
+
+# Plot map
+map.world <- map_data("world")
+map.world_joined <- left_join(map.world, countries_data, by = c("region" = "country"))
+ggplot() + geom_polygon(data = map.world_joined, aes(x = long, y = lat, group = group, fill = cut(freq, 5))) + 
+  xlim(-130, -20) + ylim(-60,40) + 
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) + 
+  coord_equal() + theme_map(base_size = 4) + scale_fill_brewer(name = "Frequência", type = "seq", palette = 1, na.value = "#E5E5E5")
+```
+
+Os profissionais eram de 19 países distintos. Com resultados semelhantes à seção de caracterização dos centros,  os países com o maior número de respostas foram México (57,7%), Brasil (23,0%) (Figura 4), seguido de  Chile (7,3%) e Colômbia (3,6%).
+
+```{r, echo = FALSE, results = 'asis'}
+countries_table <- filter(countries_data, country != "other")
+countries_table <- mutate(countries_table, freq.per = freq / sum(freq)*100)
+
+kable(arrange(countries_table, - freq), 
+      caption = "Distribuição dos respondentes por país", 
+      digits = 1, align = c("l","c","c"),
+      col.names = c("País", "N", "%"))
+```
+
+Mais da metade dos respondentes tinham com principal área de atuação a Psicologia (56,8%). Outras áreas profissionais que tiveram destaque em relação às respostas foram a Assistência Social (13,4%), a Medicina (7,5%) e a Enfermagem (6,4%) (Tabela 12).
+
+```{r, echo = FALSE, results = 'asis'}
+tb_main_ocupation <- filter(students,
+                            !is.na(professionals.demographic_questions.d_main_occupation))
+tb_main_ocupation <- data.frame(table(students$professionals.demographic_questions.d_main_occupation))
+
+ocupations <- "
+'agen' = 'Agente/Líder/Educador comunitário da saúde';
+'assi' = 'Assistente Social';
+'enfe' =  'Enfermagem';
+'fisi' = 'Fisioterapia';
+'medi' = 'Medicina';
+'nutr' = 'Nutrição';
+'dire' =   'Direito';
+'poli' = 'Polícia';
+'doce' = 'Docência';
+'tecn' = 'Auxiliar/ técnico de enfermagem';
+'psic' = 'Psicologia';
+'estud' = 'Estudante';
+'other' = 'Outro';"
+
+colnames(tb_main_ocupation) <- c("Ocupation", "freq")
+tb_main_ocupation$Ocupation <- as.character(Recode(tb_main_ocupation$Ocupation, ocupations))
+
+ocupation_table <- mutate(tb_main_ocupation, freq.per = freq / sum(freq)*100)
+ocupation_table <- arrange(ocupation_table, - freq)
+kable(ocupation_table, 
+      caption = "Categoria Profissional dos participantes", 
+      digits = 1, align = c("l","c","c"),
+      col.names = c("Actuación profesional", "N", "%"))
+```
+
+Em relação à atuação profissional, a maior parte dos profissionais definiu que fazia parte de uma equipe de trabalho como profissional de assistência direta às pessoas (65,1%). As demais ocupações relatadas são de cargos administrativos tais como coordenação de equipe (20,8%) e membros da direção da instituição em que faziam parte (8,9% ) (Tabela 13).
+
+```{r, echo = FALSE, results = 'asis'}
+workposition <- data.frame(cbind(t(sapply(students[,11:16], function(x) prop.table(table(x))*100, simplify = TRUE))[,2]))
+rownames(workposition) <- c("Direção da instituição",
+                            "Coordenação de equipe", 
+                            "Faço parte de uma equipe de trabalho",
+                            "Membro do quadro de funcionários",
+                            "Trabalhador autônomo",
+                            "Outro")
+
+workposition <- rownames_to_column(workposition, "options")
+colnames(workposition) <- c("options", "Sí")
+
+kable(arrange(workposition, -Sí), 
+      caption = "Atuação Profissional dentro das instituições", 
+      digits = 1, align = c("l", "c"),
+      col.names = c("", "Sim (%)"))
+```
+
+### Treinamento
+
+A maioria dos profissionais foram avaliados durante a capacitação (90,7%), receberam certificação dos centros de formação (88,1%) e receberam conteúdo específicos para a atuação na área de álcool, tabaco e outras substâncias (83,3%) (Tabela 14). O número de horas de capacitação foi bastante heterogêneo entre os profissionais. O valor mediano de horas da carga horária das capacitações foi de 50 (DIQ[^3] = 142,5). Nove entre dez profissionais disseram que sentem que a capacitação realizada os ajudaram a realizar rastreio e intervenção breve.
+
+[^3]: DIQ = Distância Interquartílica.
+
+```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
+# Frequência de profissionais que realizaram treinamento, foram avaliados e certicados
+training_table <- data.frame(cbind(t(sapply(students[,18:20], function(x) prop.table(table(x))*100, simplify = TRUE))[,2]))
+rownames(training_table) <- c("Realizou algum curso de formação específica?",
+                          "Foi avaliado durante o curso?",
+                          "Recebeu certificado pela participação no curso?"
+                          )
+
+training_table <- rownames_to_column(training_table, "options")
+colnames(training_table) <- c("options", "Sí")
+
+kable(arrange(training_table, -Sí), 
+      caption = "Frequência de profissionais que realizaram treinamento, foram avaliados e certicados", 
+      digits = 1, align = c("l", "c"),
+      col.names = c("", "Sim (%)"))
+```
+
+Entre aqueles que disseram ter participado de alguma formação específica, 90,7% disseram ter realizado uma avaliação durante o curso, e 88,1% receberam algum tipo de certificação.
+
+```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
+# ¿Cuál fue la capacitación que usted realizó?
+training_name <- data.frame(cbind(t(sapply(students[,24:29], function(x) prop.table(table(x))*100, simplify = TRUE))[,2]))
+rownames(training_name) <- c("SUPERA",
+                          "Treatnet",
+                          "ASSIST",
+                          "Fé na Prevenção",
+                          "Centro Regional de Referência sobre Drogas",
+                          "Outro"
+                          )
+
+training_name <- rownames_to_column(training_name, "options")
+colnames(training_name) <- c("options", "Sí")
+
+kable(arrange(training_name, -Sí), 
+      caption = "Qual foi a capacitação que você realizou?", 
+      digits = 1, align = c("l", "c"),
+      col.names = c("", "Sí (%)"))
+```
+
+Dentre os profissionais que receberam certificação, o curso de capacitação mais realizado pelos profissionais foi o ASSIST-DIT (31,5%), seguido do SUPERA (16,3%). A categoria outros foi muito mais frequente, indicando que as categorias não foram adequadas. Dentre a categoria outros, diversos cursos foram citados como:
+
+* AUDIT-DIT,
+* Capacitação para Comunidades Terapêuticas, 
+* Especialidad en promoción de la Salud y Prevención del Comportamiento Adictivo (UNAM), 
+* Prevenção ao uso indevido de drogas para conselheiros (UFSC), 
+* Procedimientos Cognitivos Conductuales a través de la acción comunitaria para la prevención del comportamiento adictivo y de la supervisión de los profesionales.
+
+### Atuação profissional
+
+Aproximadamente três entre quatro profissionais disseram realizar intervenções breves no dia-a-dia do trabalho. A experiência mediana com intervenções breves foi de 7 anos (DIQ = 5).
+
+```{r, echo = FALSE, fig.margin = TRUE, warning = FALSE, fig.cap = "Ano de início de trabalho com IB's"}
+since_year <- as.numeric(students$professionals.training_questions.work_skip.work_sinceyear)
+since_year <- subset(since_year, since_year > 1900 & since_year <= 2017)
+ggplot() + aes(since_year, y = (..count..)/sum(..count..)) + geom_histogram(binwidth=1, fill = "#7cb5ec") + 
+  theme_hc() + scale_colour_hc() +
+  labs(x = "Ano", y = "Frequência (%)") +
+  scale_y_continuous(labels = scales::percent)
+```
+
+A maior parte dos profissionais trabalha no setor público (90,9%) quando comparados com o setor privado (11,1%) e Organizações não governamentais (8,1%). A soma destas categorias é maior que 100% uma vez que um mesmo profissional pode trabalhar em mais de um setor (Figura X).
+
+```{r, echo = FALSE, warning = FALSE, fig.margin = FALSE,  fig.cap = "Tipo de serviço", fig.width=10, fig.height=5}
+servicetype <- data.frame(mapply(c, students[, 36:38], students[, 110:112]))
+servicetype <- data.frame(cbind(t(sapply(servicetype, function(x) prop.table(table(x))*100, simplify = TRUE))))
+rownames(servicetype) <- c("Público","Privado", "ONG's")
+colnames(servicetype) <- c("No", "Sí")
+servicetype$names <-rownames(servicetype)
+servicetype <- servicetype %>%
+                  gather(Resposta, Valor, No:Sí)
+
+ggplot(servicetype, aes(x = names, y = Valor, fill = factor(Resposta))) + geom_bar(stat = "identity", position = "stack") +
+  coord_flip() + theme_hc() + scale_colour_hc() + ylim(0,100) + 
+  scale_fill_manual(name = "Resposta", values = c("#f7a35c", "#7cb5ec"),labels = c("Não", "Sim")) + 
+  labs(  
+       x = "",
+       y = "Frequência (%)")
+
+```
+
+Em relação aos setores dos serviços nos quais os profissionais trabalham, a maior parte dos profissionais disse trabalhar na saúde (79,8%), seguido da educação (24,6%), serviço social (10,7%), outros (6,5%) e justiça (2,1%).
+
+```{r, , echo = FALSE, results = 'asis'}
+worksector <- data.frame(mapply(c, students[,39:43], students[, 113:117]))
+worksector <- data.frame(cbind(t(sapply(worksector, function(x) prop.table(table(x))*100, simplify = TRUE))[,2]))
+
+rownames(worksector) <- c("Serviço Social",
+                          "Saúde", 
+                          "Educação", 
+                          "Justiça", 
+                          "Outro")
+
+worksector <- rownames_to_column(worksector, "options")
+colnames(worksector) <- c("options", "Sí")
+
+kable(arrange(worksector, -Sí), 
+      caption = "Setor de atuação dos profissionais", 
+      digits = 1, align = c("l", "c"),
+      col.names = c("", "Sí (%)"))
+
+```
+
+Dentre os profionais que atuam no setor saúde, a maioria trabalhava em serviços de atençãoo primária à saúde (60,3%), seguidos de centros de tratamento (15,8%) e ambulatórios (14,3%) (Tabela 17). 
+
+```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
+# Sector salud
+worktype <- data.frame(c(students$professionals.training_questions.work_skip.sector_health.work_type_health, students$professionals.screening_questions.screening_skip_3.sector_health_no.work_type_health_no))
+worktype <- Recode(worktype[,1],
+                   "'amb' = 'Ambulatorio/consulta externa'; 
+                    'hospitals' = 'Hospitais';
+                    'mentalhealth' = 'Centro Comunitário de Tratamento em Saúde Mental/Drogas';
+                    'primarycare' = 'Atenção Primária à Saúde';
+                    'other' = 'Outros'
+                   ")
+makeTable(worktype, "Setor da Saúde")
+```
+
+
+```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
+# Sector educativo
+educationtype <- data.frame(c(students$professionals.training_questions.work_skip.sector_education.work_type_education, students$professionals.screening_questions.screening_skip_3.sector_education_no.work_type_education_no))
+
+educationtype <- Recode(educationtype[,1],
+                       "'prim' = 'Primária'; 
+                        'sec' = 'Secundária';
+                        'sup' = 'Superior';
+                        'other' = 'Outros'
+                       ")
+makeTable(educationtype, "Setor da Educação")
+```
+
+Segundo o relato dos profissionais, a maioria das capacitações das quais eles participaram centraram na intervenção com pessoas que frequentam os serviços de atenção primária à saúde (73.1%), seguidos da intervenção com estudantes em escolas (41,8%) e usuários de serviços comunitários gerais (23,1%) (Tabela 19). Além disso, a grande maioria (92,7%) relatou que a capacitação ajudou para sua atuação sobre o tema no trabalho e 74,2% dos respondentes responderam que realizam ações de triagem  e intervenção em sua rotina de trabalho
+
+```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
+# ¿Para qué tipo de población están orientadas las capacitaciones?
+target_audience <- data.frame(cbind(t(sapply(students[,50:57], function(x) prop.table(table(x))*100, simplify = TRUE))[,2]))
+rownames(target_audience) <- c("Usuários da Atenção Primária à Saúde",
+                          "Usuários de outros serviços especializados (exceto álcool e outras drogas)",
+                          "Usuários de serviços comunitários",
+                          "Usuários em ambiente de trabalho",
+                          "População carcerária",
+                          "População de rua",
+                          "Adolescentes",
+                          "Outros"
+                          )
+
+target_audience <- rownames_to_column(target_audience, "options")
+colnames(target_audience) <- c("options", "Sí")
+
+kable(arrange(target_audience, -Sí), 
+      caption = "Tipo de população alvo em as intervenção eram direcionadas nas capacitações", 
+      digits = 1, align = c("l", "c"),
+      col.names = c("", "Sí (%)"))
+```
+
+A maioria dos profissionais (82%) relata que utiliza instrumentos de triagem na avaliação do padrão de consumo de drogas. Os principais instrumentos de triagem utilizados são o ASSIST (89,9%), o AUDIT (76,6%) e o FARGESTROM (65,5%) (Tabela 20). As substâncias mais abordadas pelos profissionais são são o álcool (98,8%), o tabaco (91,9%) e a maconha (89,0%) (Tabela 21). 
+
+```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
+# Cuando indaga por el consumo de drogas ¿utiliza algún cuestionario para la detección temprana (AUDIT, ASSIST, CAGE, DUSI, FAGERSTROM)?
+screening_question <- students$professionals.screening_questions.screening_question
+screening_question <- Recode(screening_question,
+                             "'yes' = 'Sim'; 
+                             'no' = 'Não';
+                             'nobut' = 'Não, mas pergunto sem usar questionário específico'
+                             ")
+makeTable(screening_question, 
+          "Você utiliza algum questionário de triagem (ex. AUDIT, ASSIST, CAGE, DUSI, FAGERSTROM) para perguntar sobre o consumo de drogas?")
+```
+
+```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
+# ¿Cuáles son los instrumentos de detección temprana (despistaje/cribado/tamización) que suele utilizar durante sus intervenciones?
+screen_tools <- students[, 60:65]
+screen_tools <- data.frame(cbind(t(sapply(screen_tools, function(x) prop.table(table(x))*100, simplify = TRUE))[,2]))
+rownames(screen_tools) <- c("ASSIST – Questionário para triagem do uso de álcool, tabaco, e outras substâncias",
+                          "AUDIT – Teste de Identificação de Problemas Associados ao Uso de Álcool",
+                          "CAGE – Instrumento de detecção de problemas relacionados ao uso de álcool",
+                          "DUSI – Inventário de triagem do uso de drogas para adolescentes",
+                          "FAGERSTROM – Teste de Tolerância de Fagerström",
+                          "Outros"
+                          )
+colnames(screen_tools) <- c("Sí")
+screen_tools <- rownames_to_column(screen_tools, "options")
+kable(arrange(screen_tools, - Sí), 
+      caption = "Quais os instrumentos de triagem que são utilizados nas suas abordagens?", 
+      digits = 1, align = c("l", "c"),
+      col.names = c("", "(%)"))
+```
+
+Em relação às intervenções realizadas para usuários de baixo risco, os recursos educativos utilizados na intervenção, a maioria dos profissionais afirmou utilizar cartilhas ou folhetos informativos (85,5%) e ainda realizam um seguimento dos usuários (83,0%), principalmente com frequência mensal (54,8%) ou semanal (35%). 
+
+```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
+# ¿Cuáles son las sustancias abordadas?
+substances <- students[, 67:78]
+substances_table <- data.frame(cbind(t(sapply(substances, function(x) prop.table(table(x))*100, simplify = TRUE))[,2]))
+rownames(substances_table) <- c("Álcool",
+                          "Tabaco",
+                          "Cocaína inalável",
+                          "Cocaína fumável (Ex: crack)",
+                          "Maconha",
+                          "Anfetaminas",
+                          "Alucinógenos",
+                          "Inalantes",
+                          "Hipnóticos/sedativos",
+                          "Drogas injetáveis",
+                          "Opiáceos",
+                          "Outros"
+                          )
+
+colnames(substances_table) <- c("Sí")
+substances_table <- rownames_to_column(substances_table, "options")
+kable(arrange(substances_table, - Sí), 
+      caption = "Quais são as substâncias abordadas?", 
+      digits = 1, align = c("l", "c"),
+      col.names = c("", "(%)"))
+```
+
+```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
+merged_table <- data.frame(a = c("Utiliza cartilhas/folhetos", "", "", "Realiza acompanhamento?", "", "Frequência do acompanhamento", "", "", ""),
+                           b = c("Sim", "Não","Outros recursos", "Sim", "Não", "Semanal", "Mensal", "Semestral", "Anual"),
+                           N = c(504, 57, 27, 489, 100, 171, 268, 45, 5),
+                           freq = c(85.7,9.7,4.6,83,17,35.0,54.8,9.2,1.0))
+
+kable(merged_table, 
+      caption = "Uso de recursos, realização e frequência de seguimento", 
+      digits = 1, align = c("l", "l", "c", "c"),
+      col.names = c("", "", "N", "%"))
+```
+
+### Conhecimentos sobre intervenções breves
+
+Nas tabelas seguintes, avaliamos os conhecimentos e procedimentos gerais dos profissionais sobre intervenção breve para os diferentes padrões de consumo de álcool e outras drogas. Para os casos de consumo de risco de álcool, tabaco e outras drogas, a maior parte dos profissionais respondeu utilizar folhetos informativos e entrega de materiais educativos (67,6%), além do referenciamento para serviços especializados (14,4%) (Tabela 23). 
+
+```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
+# ¿Cuál es el protocolo adoptado para casos de bajo riesgo de consumo de alcohol, tabaco y otro tipo de sustancias?
+low_risk <- students$professionals.screening_questions.screening_skip_2.intervention_knowledge.intervention_lowrisk
+low_risk <- Recode(low_risk,
+                           "'referralspecial' = 'Referenciamento para serviços especializados'; 
+                           'referralselfhelp' = 'Referenciamento para grupo de ajuda-mútua ou suporte comunitário';
+                            'quickinterventionno' = 'Realização de abordagem educativa e entrega de material informativo (folder, cartilhas)';
+                            'quickinterventionyes' = 'Realização de abordagem educativa sem material de apoio (folder, cartilhas)';
+                            'none' = 'Não adoto nenhum procedimento'")
+makeTable(low_risk, 
+          "Procedimentos realizados para casos de baixo risco de consumo de álcool, tabaco e outras substâncias")
+```
+
+Os procedimentos para usuários de risco foi semelhantes aos realizados para o nível de baixo risco de consumo, com maior frequência de intervenção educativa e entrega de material informativo (54,8%), com uma frequência maior de referenciamento para serviços especializados (28,9%) (Tabela 24).
+
+```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
+# ¿Cuál es el protocolo seguido para los casos de consumo de riesgo de alcohol, tabaco y otro tipo de sustancias?
+at_risk <- students$professionals.screening_questions.screening_skip_2.intervention_knowledge.intervention_atrisk
+at_risk <- Recode(at_risk,
+                           "'referralspecial' = 'Referenciamento para serviços especializados'; 
+                           'referralselfhelp' = 'Referenciamento para grupo de ajuda-mútua ou suporte comunitário';
+                            'quickinterventionno' = 'Realização de abordagem educativa e entrega de material informativo (folder, cartilhas)';
+                            'quickinterventionyes' = 'Realização de abordagem educativa sem material de apoio (folder, cartilhas)';
+                            'none' = 'Não adoto nenhum procedimento'")
+makeTable(at_risk, 
+          "Procedimentos realizados para casos de risco de consumo de álcool, tabaco e outras substâncias")
+```
+
+No caso das pessoas diagnosticadas com dependência, a maior parte dos profissionais afirmou realizar o referenciamento para serviços especializados (72,4%), seguido de abordagem educativo sem uso de material informativo (14,1%) (Tabela 25).  
+
+```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
+# ¿Cuál es el protocolo en el caso de usuarios que cumplen los criterios diagnósticos de dependencia de drogas?
+dependence <- students$professionals.screening_questions.screening_skip_2.intervention_knowledge.intervention_dependence
+dependence <- Recode(dependence,
+                            "'referralspecial' = 'Referenciamento para serviços especializados'; 
+                           'referralselfhelp' = 'Referenciamento para grupo de ajuda-mútua ou suporte comunitário';
+                            'quickinterventionno' = 'Realização de abordagem educativa e entrega de material informativo (folder, cartilhas)';
+                            'quickinterventionyes' = 'Realização de abordagem educativa sem material de apoio (folder, cartilhas)';
+                            'none' = 'Não adoto nenhum procedimento'")
+makeTable(dependence, 
+          "Procedimentos realizados para usuários com diagnóstico de dependência")
+```
+
+Com relação às práticas de triagem e intervenções breves, a maior parte dos profissionais (53,8%) afirmou que quase todos profissionais da equipe realizam tais práticas, sendo seguido por profissionais que afirmaram que poucos profissionais da equipe realizam triagem e intervenções breves (22,6%). 
+
+```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
+# Escoja la opción que mejor representa la práctica de detección temprana e intervención breve en su institución de trabajo
+screening_work <- students$professionals.screening_questions.screening_skip.screening_work
+screening_work <- Recode(screening_work,
+                   "'onlyone' = 'Sou o único profissional de minha equipe que realiza triagem e IBs'; 
+                   'afew' = 'Poucos profissionais de minha equipe realizam triagem e IBs';
+                    'more' = 'Muitos profissionais de minha equipe realizam triagem e IBs';
+                    'almost' = 'Quase todos os profissionais de minha equipe realizam triagem e IBs';
+                    'donot' = 'Não atuo com equipes de trabalho'")
+makeTable(screening_work, 
+          "Percepção sobre a prática de sua equipe  de triagem e intervenção breve")
+```
+
+A grande maioria dos profissionais (92,5%) acredita que as ações de triagem e intervenção breve contribuem para a redução do consumo de álcool e outras drogas e a maioria se baseia nessa percepção com a avaliação cotidiana de seu trabalho (64,5%).
+
+```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
+# Percepção de efetividade da IB e auto-avaliação da prática profissional
+perception_ib <- students[, c(89, 91)]
+perception_ib <- data.frame(cbind(t(sapply(perception_ib, function(x) prop.table(table(x))*100, simplify = TRUE))[,2]))
+rownames(perception_ib) <- c("Triagem e intervenção Breve contribuem para a redução do consumo de substâncias",
+                          "Avalio os resultados da implementação da triagem e Intervenção Breve no dia-a-dia"
+                          )
+
+colnames(perception_ib) <- c("Sí")
+perception_ib <- rownames_to_column(perception_ib, "options")
+kable(arrange(perception_ib, - Sí), 
+      caption = "Percepção de efetividade da IB e se profissional avalia durante a prática", 
+      digits = 1, align = c("l", "c"),
+      col.names = c("", "(%)"))
+```
+
+Por último, avaliamos sobre os fatores atribuídos para as facilidades e dificuldades para a implementação das intervenções breves. Em relação as facilidades, a atualização constante da equipe de trabalho (67,7%), o apoio por parte das autoridades, gerentes e gestores (44,4%) e a inclusão das ações de triagem e intervenção breve como procedimentos obrigatórios (31,6%) foram as opções escolhidas pelos profissionais. 
+
+```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
+# ¿Cuáles de las siguientes opciones facilitan la implementación de detección temprana e intervención breve en la práctica profesional?
+roadblocks1 <- students[, 93:96]
+roadblocks1 <- data.frame(cbind(t(sapply(roadblocks1, function(x) prop.table(table(x))*100, simplify = TRUE))[,2]))
+rownames(roadblocks1) <- c("Suporte da autoridade responsável pelo serviço",
+                          "Inclusão das atividades nas pautas e normas obrigatórias do serviço",
+                          "Programas de atualização (educação continuada) da equipe de trabalho",
+                          "Outros"
+                          )
+
+colnames(roadblocks1) <- c("Sí")
+roadblocks1 <- rownames_to_column(roadblocks1, "options")
+kable(arrange(roadblocks1, - Sí), 
+      caption = "Fatores atribuídos pelos profissionais como facilitadores de implementação da triagem e intervenção breve", 
+      digits = 1, align = c("l", "c"),
+      col.names = c("", "(%)"))
+```
+
+Em relação às dificuldades atribuídas para implantação das atividades de triagem e intervenção breve na rotina dos serviços, a sobrecarga de atividades (49,9%),  a falta de tempo (49,9%) a falta de apoio por parte dos gestores (48,9%), a carência de uma rede especializada (41,7%) foram os obstáculos mencionados em maior frequência.
+
+```{r, echo = FALSE, fig.margin = TRUE, results = 'asis'}
+# ¿Cuáles de las siguintes opciones dificultan la implementación de las actividades de detección temprana e intervención breve?
+roadblocks2 <- students[, 98:105]
+roadblocks2 <- data.frame(cbind(t(sapply(roadblocks2, function(x) prop.table(table(x))*100, simplify = TRUE))[,2]))
+rownames(roadblocks2) <- c("Falta de apoio da gestão",
+                          "Falta de tempo (sobrecarga de atividades)",
+                          "Falta de treinamento",
+                          "Falta de supervisão",
+                          "Falta de apoio da equipe",
+                          "Falta de serviços especializados para encaminhamento dos casos graves",
+                          "Falta de conhecimento da magnitude e das características do consumo de álcool e drogas na população",
+                          "Outros"
+                          )
+
+colnames(roadblocks2) <- c("Sí")
+
+roadblocks2 <- rownames_to_column(roadblocks2, "options")
+kable(arrange(roadblocks2, - Sí), 
+      caption = "Fatores atribuídos pelos profissionais como obstáculos para a implementação de ações de triagem e intervenção breve", 
+      digits = 1, align = c("l", "c"),
+      col.names = c("", "(%)"))
+```
+
+# Apêndice A - Código
+
+Este é o código que foi usado para redigir o relatório. Você pode encontrar este material no repositório do projeto em [https://github.com/henriquepgomide/cicad](https://github.com/henriquepgomide/cicad).
+
+```{r, echo = FALSE, warning=FALSE}
+opts_chunk$set(tidy.opts=list(width.cutoff=80),tidy=TRUE)
+readLines("full_report.R")
 ```
 
