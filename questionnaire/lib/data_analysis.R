@@ -98,10 +98,38 @@ table0 <- data.frame(Nombre_centro = cicad$center.center_training_questions.cent
                      Atual = cicad$center.training.isprovided,
                      Desde = cicad$center.center_training_questions.training_since,
                      Modalidade = cicad$center.training.type,
-                     #N_treinado = cicad$center.trained.professionals,
-                     #Responsable_name = cicad$center.identification_questions.fullname,
-                     Responsable_email = cicad$center.identification_questions.center_email,
-                     Center_telefono = cicad$center.identification_questions.telnumber,
+                     Publico.agente = cicad$center.center_training_questions.full_questionnaire.training_public.agen,
+                     Publico.assistente.social = cicad$center.center_training_questions.full_questionnaire.training_public.assi,
+                     Publico.enfermeiro = cicad$center.center_training_questions.full_questionnaire.training_public.enfe,
+                     Publico.fisioterapeuta = cicad$center.center_training_questions.full_questionnaire.training_public.fisi,
+                     Publico.medico = cicad$center.center_training_questions.full_questionnaire.training_public.medi,
+                     Publico.nutricionista = cicad$center.center_training_questions.full_questionnaire.training_public.nutr,
+                     Publico.direito = cicad$center.center_training_questions.full_questionnaire.training_public.dire,
+                     Publico.policia = cicad$center.center_training_questions.full_questionnaire.training_public.poli,
+                     Publico.docencia = cicad$center.center_training_questions.full_questionnaire.training_public.doce,
+                     Publico.tecnico.enfermagem = cicad$center.center_training_questions.full_questionnaire.training_public.tecn,
+                     Publico.tecnico.psicologia = cicad$center.center_training_questions.full_questionnaire.training_public.psic,
+                     Publico.outros = cicad$center.center_training_questions.full_questionnaire.training_public.other,
+                     Target.audience.atencao.primaria.saude = cicad$center.center_training_questions.full_questionnaire.training_targetaudience.aps,
+                     Target.audience.saude.geral = cicad$center.center_training_questions.full_questionnaire.training_targetaudience.generalhealth,
+                     Target.audience.comunidade = cicad$center.center_training_questions.full_questionnaire.training_targetaudience.com,
+                     Target.audience.ambientes.trabalho = cicad$center.center_training_questions.full_questionnaire.training_targetaudience.workplace,
+                     Target.audience.populacao.carceraria = cicad$center.center_training_questions.full_questionnaire.training_targetaudience.prison,
+                     Target.audience.populacao.rua = cicad$center.center_training_questions.full_questionnaire.training_targetaudience.street,
+                     Target.audience.escola = cicad$center.center_training_questions.full_questionnaire.training_targetaudience.school,
+                     Target.audience.outra = cicad$center.center_training_questions.full_questionnaire.training_targetaudience.other,
+                     Ferramentas.assist = cicad$center.center_training_questions.full_questionnaire.training_tools.assist,
+                     Ferramentas.audit = cicad$center.center_training_questions.full_questionnaire.training_tools.audit,
+                     Ferramentas.cage = cicad$center.center_training_questions.full_questionnaire.training_tools.cage,
+                     Ferramentas.dusi = cicad$center.center_training_questions.full_questionnaire.training_tools.dusi,
+                     Ferramentas.ftnd = cicad$center.center_training_questions.full_questionnaire.training_tools.ftnd,
+                     Ferramentas.otros = cicad$center.center_training_questions.full_questionnaire.training_tools.other,
+                     Acompanhamento.cursistas = cicad$center.center_training_questions.full_questionnaire.training_followup_type,
+                     #N.treinado = cicad$center.trained.professionals,
+                     #Responsable.name = cicad$center.identification_questions.fullname,
+                     Responsable.email = cicad$center.identification_questions.center_email,
+                     Center.telefono = cicad$center.identification_questions.telnumber,
+                     Center.direccion = cicad$address, 
                      stringsAsFactors = FALSE)
 
 table0 <- data.frame(lapply(table0, function(v) {
@@ -111,7 +139,7 @@ table0 <- data.frame(lapply(table0, function(v) {
 
 table1 <- subset(table0, !is.na(table0$Nombre_centro))
 table1 <- table1[with(table1, order(Nombre_centro)), ]
-write.csv(table1, "../report/summary_table_1.csv", row.names = FALSE)
+write.csv(table1, "../summary_table_1.csv", row.names = FALSE)
 
 # ********************
 # MAP ----
